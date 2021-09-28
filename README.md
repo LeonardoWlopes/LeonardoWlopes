@@ -1,8 +1,9 @@
 ### Hello there 🖖, me chamo Léo!
 
 - 🔭 Atualmente procurando um estagio.
-- 🌱 Estudando FrontEnd.
-- 🤔 Procurando ajuda com React.
+- 🌱 Estudando Backand.
+- 🤔 Procurando ajuda com postgress.
+
 ##
 <div>
   <a href="https://github.com/LeonardoWlopes">
