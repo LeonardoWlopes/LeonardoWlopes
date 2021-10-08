@@ -1,10 +1,10 @@
 ### Hello there 🖖, me chamo Léo!
 
-- 🔭 Atualmente procurando um estagio.
-- 🌱 Estudando Backand.
-- 🤔 Procurando ajuda com postgress.
+- 🔭 Atualmente procurando um emprego 😏.
+- 🌱 Estudando Backand (NestJs).
+- 🤔 Procurando um bom material sobre react.
 
-##
+ #
 <div>
   <a href="https://github.com/LeonardoWlopes">
   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=LeonardoWlopes&show_icons=true&theme=vue-dark&include_all_commits=true&count_private=true"/>
@@ -17,9 +17,10 @@
   <img align="center" alt="Leo-Python" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
   <img align="center" alt="Leo-Node" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original.svg">
   <img align="center" alt="Leo-Cplus" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/cplusplus/cplusplus-line.svg">
+  <img align="center" alt="Leo-Typescript" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-plain.svg
+">
 </div>
-  
- ##
+ 
  
 <div> 
   <a href="https://www.instagram.com/leonardowlopes/?hl=pt-br" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
