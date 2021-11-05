@@ -1,8 +1,8 @@
 ### Hello there 🖖, me chamo Léo!
 
-- 🔭 Atualmente procurando um emprego 😏.
-- 🌱 Estudando Backand (NestJs).
-- 🤔 Procurando um bom material sobre react.
+- 🔭 Atualmente Atuando como FrontEnd e Mobile Developer.
+- 🌱 Aprimorando em ReactNative.
+- 🤔 Procurando um bom material sobre React.
 <br>
 <div>
   <a href="https://github.com/LeonardoWlopes">
