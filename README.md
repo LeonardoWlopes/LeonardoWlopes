@@ -2,7 +2,7 @@
 
 - 🔭 Atualmente Atuando como FrontEnd e Mobile Developer.
 - 🌱 Aprimorando em ReactNative.
-- 🤔 Procurando um bom material sobre React.
+- 🤔 Procurando um bom desafio em Node.Js
 <br>
 <div>
   <a href="https://github.com/LeonardoWlopes">
