@@ -1,6 +1,6 @@
 ### Hello there 🖖, me chamo Léo!
 
-- 🔭 Atualmente Atuando como FrontEnd e Mobile Developer.
+- 🔭 Atualmente Atuando como FrontEnd Developer na MODU.
 - 🌱 Aprimorando em ReactNative.
 - 🤔 Procurando um bom desafio em Node.Js
 <br>
