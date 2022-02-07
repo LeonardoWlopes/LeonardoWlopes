@@ -1,13 +1,11 @@
-<p align="center" style="wi" >
-<img src="header.svg" />
+<p align="center" >
+<img src="header.svg" width="100%"/>
 </p>
 &nbsp;
 
 ### Hello there 🖖, me chamo Léo!
 
-- 🔭 Atualmente Atuando como FrontEnd Developer na MODU.
-- 🌱 Aprimorando em Next.Js.
-- 🤔 Procurando um bom desafio em Node.Js
+
 <br>
 <div>
   <a href="https://github.com/LeonardoWlopes">
