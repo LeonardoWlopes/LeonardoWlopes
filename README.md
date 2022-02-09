@@ -4,19 +4,23 @@
 &nbsp;
 
 <br>
-<div style=" display: flex; text-align:center" >
+<div style=" display: flex; text-align:center"  >
   <a href="https://github.com/LeonardoWlopes">
   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=LeonardoWlopes&show_icons=true&theme=vue-dark&include_all_commits=true&count_private=true"/>
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=LeonardoWlopes&layout=compact&langs_count=7&theme=vue-dark"/>
-
-## Sobre min:
-
-Tenho 18 anos, Trabalho com desenvolvimento web utilizando
-React, React-Native e Node.JS a um ano e meio, Trabalho com Front e Back End porém tenho mais experiência com o Front.
-
-## Minhas Habilidades:
-
 <div align="center" >
+  
+## Sobre min
+  
+<p align="center" >
+18 anos, trabalhando com desenvolvimento Web e Mobile a quase dois anos tendo como principal linguagem o Javascript.
+Estou sempre buscando novas oportunidades de adquirir conhecimento seja trabalhando em projetos desafiadores ou em equipe com outros devs.
+Meu ramo principal é o FrontEnd com React, Next e React Native porém também tenho experencia com BackEnd em Node.
+</p>
+    
+## Minhas Habilidades
+
+
   
 ### Languages
 
@@ -45,7 +49,7 @@ React, React-Native e Node.JS a um ano e meio, Trabalho com Front e Back End por
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
-### Version Control:
+### Version Control
 
 <img src="https://img.shields.io/badge/git%20-F05032.svg?&style=for-the-badge&logo=git&logoColor=white"/> <img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
     </div>
