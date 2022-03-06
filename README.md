@@ -10,7 +10,7 @@
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=LeonardoWlopes&layout=compact&langs_count=7&theme=vue-dark"/>
 <div align="center" >
   
-![GitHub Activity Graph](https://activity-graph.herokuapp.com/graph?username=leonardoWlopes&theme=rogue&hide_border=true)
+![GitHub Activity Graph](https://activity-graph.herokuapp.com/graph?username=leonardoWlopes&theme=rogue&hide_title=true&area=true)
 
 ## Sobre min
   
