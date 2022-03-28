@@ -12,15 +12,15 @@
   
 ![GitHub Activity Graph](https://activity-graph.herokuapp.com/graph?username=leonardoWlopes&theme=rogue&hide_title=true&area=true)
 
-## Sobre min
+## About
   
 <p align="center" >
-18 anos, trabalhando com desenvolvimento Web e Mobile a quase dois anos tendo como principal linguagem o Javascript.
-Estou sempre buscando novas oportunidades de adquirir conhecimento seja trabalhando em projetos desafiadores ou em equipe com outros devs.
-Meu ramo principal é o FrontEnd com React, Next e React Native porém também tenho experencia com BackEnd em Node.
+18 years old, working with Web and Mobile development for two years with Javascript as the main language.
+I'm always looking for new opportunities to gain knowledge whether working on challenging projects or teaming up with other devs.
+My main stack is FrontEnd with React, Next and React Native but I also have experience with BackEnd in Node.
 </p>
     
-## Minhas Habilidades
+## Skills
 
 
   
@@ -53,7 +53,7 @@ Meu ramo principal é o FrontEnd com React, Next e React Native porém também t
 
 ### Version Control
 
-<img src="https://img.shields.io/badge/git%20-F05032.svg?&style=for-the-badge&logo=git&logoColor=white"/> <img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
+<img src="https://img.shields.io/badge/git%20-F05032.svg?&style=for-the-badge&logo=git&logoColor=white"/> <img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/> <img src="https://img.shields.io/badge/bitbucket-%230047B3.svg?style=for-the-badge&logo=bitbucket&logoColor=white"/>
     </div>
 
 ##
