@@ -15,9 +15,9 @@
 ## About
   
 <p align="center" >
-18 years old, working with Web and Mobile development for two years with Javascript as the main language.
-I'm always looking for new opportunities to gain knowledge whether working on challenging projects or teaming up with other devs.
-My main stack is FrontEnd with React, Next and React Native but I also have experience with BackEnd in Node.
+19 years old, working with Web and Mobile development using Javascript for more than two years with FrontEnd as the primary Stack.
+
+Always focusing on improving my skills and building performant and scalable applications, I have already worked creating websites, applications and systems from scratch both alone and together with other developers, having already acted as a leader in some projects.
 </p>
     
 ## Skills
