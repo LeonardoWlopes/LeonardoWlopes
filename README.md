@@ -59,7 +59,4 @@ Always focusing on improving my skills and building performant and scalable appl
     </div>
 
 ##
-
-![Snake animation](https://github.com/LeonardoWlopes/LeonardoWlopes/blob/output/github-contribution-grid-snake.svg)
-
 </div>
