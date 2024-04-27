@@ -13,9 +13,11 @@
 ## About
   
 <p align="center" >
-19 years old, working with Web and Mobile development using Javascript for more than two years with FrontEnd as the primary Stack.
+With 4 years of experience in web and mobile development using Javascript and Typescript, I have a solid foundation in Front-End technologies and have also worked as a Full-Stack developer on several projects.
 
-Always focusing on improving my skills and building performant and scalable applications, I have already worked creating websites, applications and systems from scratch both alone and together with other developers, having already acted as a leader in some projects.
+My focus is always on improving my skills to build performant and scalable applications. I have experience in creating websites, applications, and systems from scratch, both independently and as part of a team. As a leader in some projects, I've been able to motivate and guide other developers, achieving project goals within established timelines.
+
+I consistently seek to stay updated on new technologies and trends to apply them in my projects and enhance the user experience. I am always willing to learn and take on new challenges, with a focus on delivering high-quality results and exceeding expectations.
 </p>
     
 ## Skills
