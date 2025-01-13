@@ -63,3 +63,5 @@ I consistently seek to stay updated on new technologies and trends to apply them
 
 ##
 </div>
+
+<img src="https://raw.githubusercontent.com/leonardowlopes/leonardowlopes/output/snake.svg" alt="Snake animation" />
