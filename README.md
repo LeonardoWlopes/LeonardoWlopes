@@ -13,11 +13,9 @@
 ## About
   
 <p align="center" >
-With 4 years of experience in web and mobile development using Javascript and Typescript, I have a solid foundation in Front-End technologies and have also worked as a Full-Stack developer on several projects.
+Senior Full Stack Software Engineer with 5 years of experience developing scalable, high-performance web and mobile applications. Specialized in React, Next, React Native, Node, and CI/CD, with a strong focus on software architecture, performance optimization, and technical governance.
 
-My focus is always on improving my skills to build performant and scalable applications. I have experience in creating websites, applications, and systems from scratch, both independently and as part of a team. As a leader in some projects, I've been able to motivate and guide other developers, achieving project goals within established timelines.
-
-I consistently seek to stay updated on new technologies and trends to apply them in my projects and enhance the user experience. I am always willing to learn and take on new challenges, with a focus on delivering high-quality results and exceeding expectations.
+Currently part of the Governance team at Buildbox, defining technical standards and driving structural improvements to enhance software development efficiency.
 </p>
     
 ## Skills
