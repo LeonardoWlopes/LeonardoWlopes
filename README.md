@@ -13,9 +13,11 @@
 ## About
   
 <p align="center" >
-Senior Full Stack Software Engineer with 5 years of experience developing scalable, high-performance web and mobile applications. Specialized in React, Next, React Native, Node, and CI/CD, with a strong focus on software architecture, performance optimization, and technical governance.
+Software Engineer with a strong focus on technical governance, performance, and scalability. I specialize in React, Node.js, and React Native, and I’m highly experienced with their powerful ecosystems: Next.js, NestJS, and Expo. I have a solid track record designing scalable architectures, optimizing critical applications, and building efficient CI/CD pipelines.
 
-Currently part of the Governance team at Buildbox, defining technical standards and driving structural improvements to enhance software development efficiency.
+I'm the kind of professional you look for when your app or infrastructure isn't delivering the value it should, or when your tech team needs clear standards, processes, and direction that actually make a difference.
+
+I'm also recognized for my strong communication skills, leadership ability, and team management experience. I'm passionate about learning and teaching, and I believe knowledge only has real impact when it’s shared.
 </p>
     
 ## Skills
