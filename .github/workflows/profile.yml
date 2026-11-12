@@ -54,7 +54,13 @@ jobs:
       - name: Commit & push
         run: |
           mkdir -p assets/generated
-          cp /metrics_renders/metrics.svg assets/generated/metrics.svg
+          # The GitHub API sometimes returns no language data; keep the last
+          # good render instead of committing an empty card.
+          if grep -q 'field language' /metrics_renders/metrics.svg; then
+            cp /metrics_renders/metrics.svg assets/generated/metrics.svg
+          else
+            echo "::warning::metrics render has no language data, keeping previous file"
+          fi
           cp profile-3d-contrib/profile-3d.svg assets/generated/profile-3d.svg
           rm -rf profile-3d-contrib
           git config user.name github-actions
