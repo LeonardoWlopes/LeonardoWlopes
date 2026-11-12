@@ -134,7 +134,7 @@ Check the PNGs for text overflowing a box or card, icons invisible on the backgr
 
 - Runs daily at 06:00 UTC, on `workflow_dispatch`, and on pushes that change the workflow or `profile-3d.json`.
 - **3D contrib** (`yoshi389111/github-profile-3d-contrib`): uses the colors in `.github/profile-3d.json` and writes `assets/generated/profile-3d.svg`.
-- **lowlighter/metrics**: habits, languages and achievements plugins, in the `America/Sao_Paulo` timezone. Writes `assets/generated/metrics.svg`.
+- **lowlighter/metrics**: languages plugin only, in the `America/Sao_Paulo` timezone. Writes `assets/generated/metrics.svg`. The `habits` and `achievements` plugins are broken upstream (as of Nov 2026: GitHub dropped commit payloads from push events and sunset Projects classic). They render "Unexpected error", so don't re-enable them without checking the upstream repo first.
 - Requires the **`METRICS_TOKEN`** secret (classic PAT with `read:user` + `repo`). Without it, metrics fails.
 - Both run in a single job so their auto-commits don't conflict.
 - The snake (Platane/snk) was removed. If the `output` branch still exists, it's a leftover from it and can be deleted.

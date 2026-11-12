@@ -21,7 +21,7 @@
 <img src="assets/generated/profile-3d.svg" width="100%" alt="3D contribution calendar"/>
 
 <p align="center">
-  <img src="assets/generated/metrics.svg" alt="Coding habits, languages and achievements"/>
+  <img src="assets/generated/metrics.svg" alt="Most used and recently used languages"/>
 </p>
 
 <p align="center">
