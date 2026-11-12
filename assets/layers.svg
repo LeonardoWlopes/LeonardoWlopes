@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" fill="none" role="img" aria-label="What I work on: Frontend, Backend and Mobile">
+  <defs>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>
+    <filter id="glow" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="12"/></filter>
+    <linearGradient id="glassEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".06"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="430" rx="28" fill="#030407"/>
+  <rect x=".5" y=".5" width="1199" height="429" rx="27.5" stroke="#fff" stroke-opacity=".08"/>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0000;0.0500;0.9571;1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 14;0 14;0 0;0 0;0 14" keyTimes="0;0.0000;0.0500;0.9571;1" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" dur="14s" repeatCount="indefinite"/>
+    <text x="48" y="70" fill="#2f6bff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" letter-spacing="2.5">WHAT I WORK ON</text>
+    <text x="48" y="116" fill="#e8eef9" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="36" font-weight="700" letter-spacing="-0.5">Three layers, one standard</text>
+  </g>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0143;0.0643;0.9571;1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 14;0 14;0 0;0 0;0 14" keyTimes="0;0.0143;0.0643;0.9571;1" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" dur="14s" repeatCount="indefinite"/>
+    <rect x="48.0" y="146.0" width="357.3" height="252.0" rx="24" fill="#0a0e18" stroke="url(#glassEdge)"/>
+    <rect x="76" y="172" width="44" height="44" rx="12" fill="#2f6bff" fill-opacity=".15" stroke="#2f6bff" stroke-opacity=".3"/>
+    <g transform="translate(88 184) scale(0.833)" fill="none" stroke="#2f6bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></g>
+    <text x="76" y="248" fill="#e8eef9" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="21" font-weight="600">Frontend</text>
+    <text x="76" y="278" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">Interfaces that feel fast. Component</text><text x="76" y="302" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">systems, accessible markup, and</text><text x="76" y="326" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">state that stays predictable as the</text><text x="76" y="350" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">product grows.</text>
+  </g>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0250;0.0750;0.9571;1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 14;0 14;0 0;0 0;0 14" keyTimes="0;0.0250;0.0750;0.9571;1" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" dur="14s" repeatCount="indefinite"/>
+    <rect x="421.3" y="146.0" width="357.3" height="252.0" rx="24" fill="#0a0e18" stroke="url(#glassEdge)"/>
+    <rect x="449" y="172" width="44" height="44" rx="12" fill="#2f6bff" fill-opacity=".15" stroke="#2f6bff" stroke-opacity=".3"/>
+    <g transform="translate(461 184) scale(0.833)" fill="none" stroke="#2f6bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6 6h.01"/><path d="M6 18h.01"/></g>
+    <text x="449" y="248" fill="#e8eef9" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="21" font-weight="600">Backend</text>
+    <text x="449" y="278" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">APIs and services in Node.js,</text><text x="449" y="302" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">TypeScript and Go. I focus on clear</text><text x="449" y="326" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">boundaries, observability and</text><text x="449" y="350" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">running cost.</text>
+  </g>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0357;0.0857;0.9571;1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 14;0 14;0 0;0 0;0 14" keyTimes="0;0.0357;0.0857;0.9571;1" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" dur="14s" repeatCount="indefinite"/>
+    <rect x="794.7" y="146.0" width="357.3" height="252.0" rx="24" fill="#0a0e18" stroke="url(#glassEdge)"/>
+    <rect x="823" y="172" width="44" height="44" rx="12" fill="#2f6bff" fill-opacity=".15" stroke="#2f6bff" stroke-opacity=".3"/>
+    <g transform="translate(835 184) scale(0.833)" fill="none" stroke="#2f6bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></g>
+    <text x="823" y="248" fill="#e8eef9" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="21" font-weight="600">Mobile</text>
+    <text x="823" y="278" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">React Native apps with native</text><text x="823" y="302" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">modules when the device needs it,</text><text x="823" y="326" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">shipped with the same care as the</text><text x="823" y="350" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5">web.</text>
+  </g>
+
+</svg>

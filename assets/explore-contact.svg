@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="590" height="112" viewBox="0 0 590 112" fill="none" role="img" aria-label="Contact: Start a conversation">
+  <defs>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>
+    <filter id="glow" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="12"/></filter>
+    <linearGradient id="glassEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".06"/>
+    </linearGradient>
+  </defs>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0321;0.0821;0.9571;1" dur="14s" repeatCount="indefinite"/>
+    <rect x=".5" y=".5" width="589" height="111" rx="20" fill="#0a0e18" stroke="url(#glassEdge)"/>
+    <text x="32" y="50" fill="#e8eef9" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="21" font-weight="600">Contact</text>
+    <text x="32" y="78" fill="#8c98b0" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15">Start a conversation</text>
+    <g><g transform="translate(532 44) scale(1.000)" fill="none" stroke="#8c98b0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></g><animateTransform attributeName="transform" type="translate" values="0 0;3 -3;0 0" dur="2.4s" repeatCount="indefinite"/></g>
+  </g>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" fill="none" role="img" aria-label="Leonardo Lopes, Software Engineer &amp; Architect, Tech Lead at Linda Lifetech (Buildbox)">
+  <defs>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>
+    <filter id="glow" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="12"/></filter>
+    <linearGradient id="glassEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".06"/>
+    </linearGradient>
+    <clipPath id="heroClip"><rect x="0" y="0" width="1200" height="460" rx="40"/></clipPath>
+  </defs>
+  <g clip-path="url(#heroClip)">
+    <rect x="0" y="0" width="1200" height="460" fill="#030407"/>
+    <ellipse cx="216" cy="64" rx="396" ry="253" fill="#1558c9" opacity="0.95" filter="url(#blur)"/>
+    <ellipse cx="1056" cy="129" rx="312" ry="230" fill="#2f6bff" opacity="0.85" filter="url(#blur)"/>
+    <ellipse cx="600" cy="483" rx="432" ry="193" fill="#2f6bff" opacity="0.7" filter="url(#blur)"/>
+    <ellipse cx="720" cy="276" rx="288" ry="184" fill="#1558c9" opacity=".6" filter="url(#blur)"><animateTransform attributeName="transform" type="translate" values="-48 -14;72 23;-48 -14" dur="14s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/></ellipse>
+  </g>
+  <rect x="0.5" y="0.5" width="1199" height="459" rx="40" stroke="#fff" stroke-opacity=".1"/>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0000;0.0500;0.9571;1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 14;0 14;0 0;0 0;0 14" keyTimes="0;0.0000;0.0500;0.9571;1" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" dur="14s" repeatCount="indefinite"/><rect x="419" y="92" width="363" height="34" rx="17.0" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".2"/><text x="600" y="114" text-anchor="middle" fill="#fff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" font-weight="400" letter-spacing="2.4" textLength="319" lengthAdjust="spacing">SOFTWARE ENGINEER &amp; ARCHITECT</text></g>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0143;0.0643;0.9571;1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 14;0 14;0 0;0 0;0 14" keyTimes="0;0.0143;0.0643;0.9571;1" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" dur="14s" repeatCount="indefinite"/>
+    <text x="600" y="212" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="84" font-weight="700" letter-spacing="-1.5" fill="#2f6bff" filter="url(#glow)" opacity=".9">Leonardo Lopes<animate attributeName="opacity" values=".65;1;.65" dur="4s" repeatCount="indefinite"/></text>
+    <text x="600" y="212" text-anchor="middle" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="84" font-weight="700" letter-spacing="-1.5" fill="#fff">Leonardo Lopes</text>
+  </g>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0321;0.0821;0.9571;1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 14;0 14;0 0;0 0;0 14" keyTimes="0;0.0321;0.0821;0.9571;1" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" dur="14s" repeatCount="indefinite"/>
+    <text x="600" y="266" text-anchor="middle" fill="#fff" fill-opacity=".85" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="21">Tech Lead <tspan fill="#7aa6ff">@Linda Lifetech</tspan> · Buildbox</text>
+    <text x="600" y="298" text-anchor="middle" fill="#fff" fill-opacity=".65" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17">Web, backend and mobile, built to be easy to change and to keep running after launch.</text>
+  </g>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0500;0.1000;0.9571;1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 14;0 14;0 0;0 0;0 14" keyTimes="0;0.0500;0.1000;0.9571;1" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" dur="14s" repeatCount="indefinite"/><rect x="372" y="346" width="232" height="48" rx="24.0" fill="#fff"/><text x="477" y="376" text-anchor="middle" fill="#030407" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="600">leonardolopes.tech</text><g transform="translate(562 362) scale(0.667)" fill="none" stroke="#030407" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></g><rect x="641" y="346" width="162" height="48" rx="24.0" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".2"/><text x="722" y="376" text-anchor="middle" fill="#fff" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="600">Get in touch</text></g>
+
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="260" viewBox="0 0 1200 260" fill="none" role="img" aria-label="Want to build something together? Get in touch">
+  <defs>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>
+    <filter id="glow" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="12"/></filter>
+    <linearGradient id="glassEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".06"/>
+    </linearGradient>
+    <clipPath id="ctaClip"><rect x="0" y="0" width="1200" height="260" rx="40"/></clipPath>
+  </defs>
+  <g clip-path="url(#ctaClip)">
+    <rect x="0" y="0" width="1200" height="260" fill="#030407"/>
+    <ellipse cx="216" cy="36" rx="396" ry="143" fill="#1558c9" opacity="0.95" filter="url(#blur)"/>
+    <ellipse cx="1056" cy="73" rx="312" ry="130" fill="#2f6bff" opacity="0.85" filter="url(#blur)"/>
+    <ellipse cx="600" cy="273" rx="432" ry="109" fill="#2f6bff" opacity="0.7" filter="url(#blur)"/>
+    <ellipse cx="720" cy="156" rx="288" ry="104" fill="#1558c9" opacity=".6" filter="url(#blur)"><animateTransform attributeName="transform" type="translate" values="-48 -8;72 13;-48 -8" dur="14s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/></ellipse>
+  </g>
+  <rect x="0.5" y="0.5" width="1199" height="259" rx="40" stroke="#fff" stroke-opacity=".1"/>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0000;0.0500;0.9571;1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 14;0 14;0 0;0 0;0 14" keyTimes="0;0.0000;0.0500;0.9571;1" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" dur="14s" repeatCount="indefinite"/>
+    <text x="72" y="116" fill="#fff" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="-0.8">Want to build something together?</text>
+    <text x="72" y="158" fill="#fff" fill-opacity=".75" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="19">Tell me what you are working on and we can see if it is a good fit.</text>
+  </g>
+  <g opacity="1"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.0214;0.0714;0.9571;1" dur="14s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="translate" values="0 14;0 14;0 0;0 0;0 14" keyTimes="0;0.0214;0.0714;0.9571;1" calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" dur="14s" repeatCount="indefinite"/>
+    <rect x="938" y="104" width="190" height="54" rx="27" fill="#2f6bff" filter="url(#glow)" opacity=".8"><animate attributeName="opacity" values=".5;.95;.5" dur="3s" repeatCount="indefinite"/></rect>
+    <rect x="938" y="104" width="190" height="54" rx="27" fill="#2f6bff"/>
+    <text x="970" y="137" fill="#fff" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="600">Get in touch</text>
+    <g transform="translate(1078 122) scale(0.750)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></g>
+  </g>
+
+</svg>

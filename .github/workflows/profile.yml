@@ -1,0 +1,72 @@
+name: Update profile widgets
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # daily, 03:00 in São Paulo
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/profile.yml
+      - .github/profile-3d.json
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-widgets
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: 3D contribution calendar
+        uses: yoshi389111/github-profile-3d-contrib@v0.9.3
+        env:
+          # PAT so private contributions count; falls back to the default token
+          GITHUB_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+          SETTING_JSON: .github/profile-3d.json
+
+      - name: Metrics (habits, languages, achievements)
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: ${{ github.repository_owner }}
+          filename: metrics.svg
+          output_action: none
+          template: classic
+          base: ""
+          config_timezone: America/Sao_Paulo
+          plugin_habits: yes
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          plugin_habits_trim: yes
+          plugin_habits_days: 14
+          plugin_habits_from: 200
+          plugin_languages: yes
+          plugin_languages_sections: most-used, recently-used
+          plugin_languages_details: bytes-size, percentage
+          plugin_languages_limit: 8
+          plugin_languages_indepth: no
+          plugin_achievements: yes
+          plugin_achievements_display: compact
+          plugin_achievements_threshold: B
+          plugin_achievements_limit: 8
+
+      - name: Commit & push
+        run: |
+          mkdir -p assets/generated
+          cp /metrics_renders/metrics.svg assets/generated/metrics.svg
+          cp profile-3d-contrib/profile-3d.svg assets/generated/profile-3d.svg
+          rm -rf profile-3d-contrib
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add assets/generated
+          if git commit -m "chore: update profile widgets"; then
+            git push
+          fi
