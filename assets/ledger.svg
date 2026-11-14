@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="910" viewBox="0 0 1200 910" fill="none" role="img" aria-label="Earlier results: −80% worst-case load time at Grupo Petrópolis, 27 Brazilian states on one pricing platform for Lactalis, 0.5× the estimated delivery time at MSD, 580+ teaching units served for Poliedro.">
+  <style>
+    .in, .draw, .retract, .pulse, .float, .drift, .rise { transform-box: fill-box; }
+    @media (prefers-reduced-motion: no-preference) {
+      .in { animation: in 14s cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
+      .draw { transform-origin: left center; animation: draw 14s cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
+      .pulse { animation: pulse 2s ease-in-out infinite; }
+      .float { transform-origin: center; animation: float 9s ease-in-out infinite alternate; }
+      .retract { transform-origin: right center; animation: retract 14s cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
+      .drift { animation: drift 18s ease-in-out infinite alternate; }
+      .rise { animation: rise 14s cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
+    }
+    @keyframes in { 0% { opacity: 0; transform: translateY(12px); } 6%, 95% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+    @keyframes draw { 0% { transform: scaleX(0); } 9%, 95% { transform: scaleX(1); } 100% { transform: scaleX(0); opacity: 0; } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+    @keyframes float { from { transform: translateY(4px) rotate(-0.6deg); } to { transform: translateY(-8px) rotate(0.6deg); } }
+    @keyframes drift { from { transform: translateX(-36px); } to { transform: translateX(36px); } }
+    @keyframes rise { 0% { opacity: 0; transform: translateY(28px); } 10%, 95% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  </style>
+  <defs>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="60"/></filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="haze" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" stroke="#7aa6ff" stroke-opacity=".07"/>
+    </pattern>
+    <linearGradient id="fadeY" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".15" stop-color="#fff"/>
+      <stop offset=".85" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="gridMask"><rect width="1200" height="910" fill="url(#fadeY)"/></mask>
+    <clipPath id="frame"><rect width="1200" height="910" rx="24"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="910" fill="#030407"/>
+    <ellipse cx="144" cy="182" rx="360" ry="364" fill="#1558c9" opacity=".32" filter="url(#blur)"/>
+    <rect width="1200" height="910" fill="url(#grid)" mask="url(#gridMask)"/>
+    <g class="in" style="animation-delay:0.00s">
+      <text x="64.0" y="96.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="500" text-anchor="start" letter-spacing="-1.3">Measured in production.</text>
+      <text x="64.0" y="140.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="400" text-anchor="start">Numbers from systems I helped ship before my current role. Full role</text>
+      <text x="64.0" y="167.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="400" text-anchor="start">descriptions are in the experience history.</text>
+    </g>
+    <path d="M64 220 H1136" stroke="#fff" stroke-opacity=".12"/>
+    <g class="in" style="animation-delay:0.25s">
+      <text x="64.0" y="286.0" fill="#e8eef9" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="52" font-weight="500" text-anchor="start" letter-spacing="-1.5" style="font-feature-settings:'tnum','zero'">−80%</text>
+      <text x="64.0" y="314.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">worst-case app load time</text>
+      <text x="64.0" y="338.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="start" style="font-feature-settings:'tnum','zero'">2023 – 2024</text>
+      <text x="314.0" y="266.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill-opacity=".85">Took the worst-case load of the field-sales app behind about 97% of</text><text x="314.0" y="291.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill-opacity=".85">Grupo Petrópolis’ USD 4B yearly revenue from 8 minutes to 1 min 37 s.</text><text x="314.0" y="326.0" fill="#7aa6ff" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">React · React Native · Node.js</text>
+      <text x="906.0" y="266.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500" text-anchor="start">Grupo Petrópolis</text>
+      <text x="906.0" y="290.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Software Engineer at Buildbox</text>
+    </g>
+    <path d="M64 370 H1136" stroke="#fff" stroke-opacity=".12"/>
+    <g class="in" style="animation-delay:0.40s">
+      <text x="64.0" y="436.0" fill="#e8eef9" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="52" font-weight="500" text-anchor="start" letter-spacing="-1.5" style="font-feature-settings:'tnum','zero'">27</text>
+      <text x="64.0" y="464.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Brazilian states, one pricing platform</text>
+      <text x="64.0" y="488.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="start" style="font-feature-settings:'tnum','zero'">2024 – 2025</text>
+      <text x="314.0" y="416.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill-opacity=".85">National pricing platform with regional tax rules for Lactalis, the</text><text x="314.0" y="441.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill-opacity=".85">largest dairy group in the world.</text><text x="314.0" y="476.0" fill="#7aa6ff" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Node.js · TypeScript</text>
+      <text x="906.0" y="416.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500" text-anchor="start">Lactalis Group</text>
+      <text x="906.0" y="440.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Software Engineer at Buildbox</text>
+    </g>
+    <path d="M64 520 H1136" stroke="#fff" stroke-opacity=".12"/>
+    <g class="in" style="animation-delay:0.55s">
+      <text x="64.0" y="586.0" fill="#e8eef9" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="52" font-weight="500" text-anchor="start" letter-spacing="-1.5" style="font-feature-settings:'tnum','zero'">0.5×</text>
+      <text x="64.0" y="614.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">the estimated delivery time</text>
+      <text x="64.0" y="638.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="start" style="font-feature-settings:'tnum','zero'">2022 – 2023</text>
+      <text x="314.0" y="566.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill-opacity=".85">Shipped the internal web and mobile gamification platform for MSD</text><text x="314.0" y="591.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill-opacity=".85">Brazil with near-zero production defects.</text>
+      <text x="906.0" y="566.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500" text-anchor="start">MSD</text>
+      <text x="906.0" y="590.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Software Engineer at Buildbox</text>
+    </g>
+    <path d="M64 670 H1136" stroke="#fff" stroke-opacity=".12"/>
+    <g class="in" style="animation-delay:0.70s">
+      <text x="64.0" y="736.0" fill="#e8eef9" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="52" font-weight="500" text-anchor="start" letter-spacing="-1.5" style="font-feature-settings:'tnum','zero'">580+</text>
+      <text x="64.0" y="764.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">teaching units served</text>
+      <text x="64.0" y="788.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="start" style="font-feature-settings:'tnum','zero'">2021 – 2022</text>
+      <text x="314.0" y="716.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill-opacity=".85">Go service that turns MP4 uploads into adaptive HLS streams for</text><text x="314.0" y="741.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" text-anchor="start" fill-opacity=".85">Poliedro, built for peak load.</text><text x="314.0" y="776.0" fill="#7aa6ff" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Go · HLS</text>
+      <text x="906.0" y="716.0" fill="#e8eef9" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500" text-anchor="start">Poliedro</text>
+      <text x="906.0" y="740.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Software Engineer at Nkey</text>
+    </g>
+    <path d="M64 820 H1136" stroke="#fff" stroke-opacity=".12"/>
+    <g class="in" style="animation-delay:0.90s"><text x="64.0" y="870.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="400" text-anchor="start">Before that: React Native apps for freelance clients, from 2020.</text></g>
+    <g class="in" style="animation-delay:1.00s"><text x="968.0" y="870.0" fill="#7aa6ff" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="500" text-anchor="start">See my experience</text><g transform="translate(1099.8 857.0) scale(0.667)" fill="none" stroke="#7aa6ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></g></g>
+
+  </g>
+  <rect x=".5" y=".5" width="1199" height="909" rx="23.5" stroke="#fff" stroke-opacity=".08"/>
+</svg>

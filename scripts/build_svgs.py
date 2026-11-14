@@ -1,43 +1,129 @@
 #!/usr/bin/env python3
-"""Generate the README SVGs in the leonardolopes.tech visual language:
-neon on midnight, glass cards, mono eyebrows.
+"""Generate the README SVGs in the leonardolopes.tech 2.0 language:
+"Light Means Production". Neon on midnight, one light source per screen,
+Geist for words, Geist Mono for figures.
 
 Usage: python3 scripts/build_svgs.py
 
-GitHub renders README SVGs inside <img>, which blocks external requests, so
-the memoji and tech icons (vendored from the site repo into assets/source/)
-are embedded as data URIs.
+Content mirrors ~/www/leonardolopes.tech/src/utils/mock.ts (EXPERIENCES,
+HOME_HERO, OUTCOMES, STACK_GROUPS, CONTACT_LINKS). Visual rules come from
+that repo's DESIGN.md. The career length and ruler are computed from
+today's date, so the daily workflow re-runs this script.
+
+GitHub renders README SVGs inside <img>: no external requests, so the
+portrait and signature (assets/source/brand/) are inlined. Animations are
+CSS, gated on prefers-reduced-motion; the static state is the final frame.
 """
 
-import base64
+import datetime as dt
 import html
 import pathlib
+import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SRC = ROOT / "assets" / "source"
+BRAND = ROOT / "assets" / "source" / "brand"
 OUT = ROOT / "assets"
 
-# Tokens from leonardolopes.tech globals.css (.dark), oklch converted to hex
+# ---------------------------------------------------------------- tokens
+# leonardolopes.tech globals.css @theme + .dark (oklch converted to hex)
 MIDNIGHT = "#030407"
-CARD = "#0a0e18"
-FG = "#e8eef9"
-MUTED = "#8c98b0"
+BACKGROUND = "#030407"   # oklch(0.107 0.011 266.5)
+CARD = "#0a0e18"         # oklch(0.165 0.022 267.2)
+FG = "#e8eef9"           # oklch(0.948 0.016 262.8)
+MUTED = "#8c98b0"        # oklch(0.678 0.038 264.3)
 COBALT = "#1558c9"
 NEON = "#2f6bff"
 NEON_SOFT = "#7aa6ff"
 
-SANS = "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+SANS = "Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+MONO = "'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+EASE = "cubic-bezier(0.16, 1, 0.3, 1)"  # house easing
 
 W = 1200
-CYCLE = 14.0  # seconds; every intro animation replays on this loop
+GUTTER = 64
+CYCLE = 14  # seconds; every intro replays on this loop
+
+TODAY = dt.date.today()
+
+# ------------------------------------------------------------------ content
+# Mirrors src/utils/mock.ts in the portfolio. Keep the two in sync.
+
+CAREER_START = dt.date(2020, 6, 1)
+
+HERO = {
+    "name": "Leonardo Lopes",
+    "role": "Tech Lead · Software Engineer & Architect",
+    "current": "Tech Lead at Buildbox, leading Horizontes, the Callink super app",
+    "availability": "Open to full-time, contract and freelance · Remote from Brazil (UTC−3) or relocation",
+}
+
+# The featured outcome (isFeatured): the cost slab under the hero. No beam.
+SLAB = {
+    "client": "Linda Lifetech",
+    "metric": "−38%",
+    "ratio": 0.62,
+    "caption": "Monthly cloud bill of the Linda Lifetech platform, from about USD 2,100 to about USD 1,300, after a zero-downtime move from AWS to GCP.",
+}
+
+# OUTCOMES minus the current (Callink) and featured (Linda) ones, like the home.
+LEDGER = [
+    ("−80%", "worst-case app load time", "2023 – 2024",
+     "Took the worst-case load of the field-sales app behind about 97% of Grupo Petrópolis’ USD 4B yearly revenue from 8 minutes to 1 min 37 s.",
+     ["React", "React Native", "Node.js"], "Grupo Petrópolis", "Software Engineer at Buildbox"),
+    ("27", "Brazilian states, one pricing platform", "2024 – 2025",
+     "National pricing platform with regional tax rules for Lactalis, the largest dairy group in the world.",
+     ["Node.js", "TypeScript"], "Lactalis Group", "Software Engineer at Buildbox"),
+    ("0.5×", "the estimated delivery time", "2022 – 2023",
+     "Shipped the internal web and mobile gamification platform for MSD Brazil with near-zero production defects.",
+     [], "MSD", "Software Engineer at Buildbox"),
+    ("580+", "teaching units served", "2021 – 2022",
+     "Go service that turns MP4 uploads into adaptive HLS streams for Poliedro, built for peak load.",
+     ["Go", "HLS"], "Poliedro", "Software Engineer at Nkey"),
+]
+
+# EXPERIENCES as career lanes: (label, start, end or None, [(engagement, start, end or None)])
+LANES = [
+    ("Buildbox", dt.date(2022, 5, 1), None, [
+        ("MSD", dt.date(2022, 5, 1), dt.date(2023, 5, 1)),
+        ("Grupo Petrópolis", dt.date(2023, 5, 1), dt.date(2024, 11, 1)),
+        ("Lactalis Group", dt.date(2024, 11, 1), dt.date(2025, 8, 1)),
+        ("Linda Lifetech", dt.date(2025, 8, 1), dt.date(2026, 8, 1)),
+        ("Callink", dt.date(2026, 8, 1), None),
+    ]),
+    ("Nkey", dt.date(2021, 8, 1), dt.date(2022, 4, 30), [
+        ("Poliedro Educação", dt.date(2021, 8, 1), dt.date(2022, 4, 30)),
+    ]),
+    ("Freelance", dt.date(2020, 6, 1), dt.date(2021, 7, 31), []),
+]
+
+STACK_GROUPS = [
+    ("Interfaces", ["React", "Next.js", "React Native", "Expo", "Tailwind CSS", "Storybook"]),
+    ("Services", ["TypeScript", "Node.js", "Go", "NestJS", "GraphQL", "Fastify"]),
+    ("Data and messaging", ["PostgreSQL", "MongoDB", "Redis", "Apache Kafka", "Prisma", "MySQL"]),
+    ("Cloud and infrastructure", ["AWS", "Google Cloud", "Azure", "Terraform", "Kubernetes", "OpenTelemetry"]),
+]
+
+CONTACT_ROWS = [
+    ("mail", "Email", "leonardolopesdeveloper@gmail.com"),
+    ("calendar", "Schedule a call", ""),
+    ("message", "WhatsApp", ""),
+    ("linkedin", "LinkedIn", ""),
+    ("github", "GitHub", ""),
+]
+
+CLOSING_LINE = "Send the role or the project."
+
+NUMBER_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"]
 
 # lucide icons (24x24, stroke)
 LUCIDE = {
-    "layers": '<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>',
-    "server": '<rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6 6h.01"/><path d="M6 18h.01"/>',
-    "smartphone": '<rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/>',
-    "arrow": '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
+    "mail": '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+    "calendar": '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+    "message": '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>',
+    "linkedin": '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>',
+    "github": '<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/>',
+    "arrow-up-right": '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
+    "arrow-right": '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
 }
 
 
@@ -47,45 +133,21 @@ def esc(s: str) -> str:
     return html.escape(s, quote=True)
 
 
-def data_uri(path: pathlib.Path, mime: str) -> str:
-    return f"data:{mime};base64," + base64.b64encode(path.read_bytes()).decode()
+def years_between(a: dt.date, b: dt.date) -> int:
+    return b.year - a.year - ((b.month, b.day) < (a.month, a.day))
 
 
-def _k(t: float) -> str:
-    return f"{min(max(t / CYCLE, 0), 1):.4f}"
+def career_words() -> str:
+    n = years_between(CAREER_START, TODAY)
+    return NUMBER_WORDS[n] if n < len(NUMBER_WORDS) else str(n)
 
 
-def loop(attr: str, a, b, start: float, dur: float = 0.7) -> str:
-    """a -> b at `start`, hold, back to a at the end of the cycle, repeat.
-    Give the element `b` as its static value so non-SMIL renderers show
-    the finished state."""
-    return (
-        f'<animate attributeName="{attr}" values="{a};{a};{b};{b};{a}" '
-        f'keyTimes="0;{_k(start)};{_k(start + dur)};{_k(CYCLE - 0.6)};1" '
-        f'dur="{CYCLE:.0f}s" repeatCount="indefinite"/>'
-    )
+def fmt_month(d: dt.date | None) -> str:
+    return "Present" if d is None else d.strftime("%b %Y")
 
 
-def fade(delay: float) -> str:
-    return loop("opacity", 0, 1, delay)
-
-
-def rise(delay: float, dy: int = 14) -> str:
-    return (
-        f'<animateTransform attributeName="transform" type="translate" '
-        f'values="0 {dy};0 {dy};0 0;0 0;0 {dy}" '
-        f'keyTimes="0;{_k(delay)};{_k(delay + 0.7)};{_k(CYCLE - 0.6)};1" '
-        f'calcMode="spline" keySplines="0 0 1 1;.2 .8 .2 1;0 0 1 1;0 0 1 1" '
-        f'dur="{CYCLE:.0f}s" repeatCount="indefinite"/>'
-    )
-
-
-def enter(delay: float) -> str:
-    return fade(delay) + rise(delay)
-
-
-def wrap(text: str, max_px: float, size: float, ratio: float = 0.53) -> list[str]:
-    max_chars = int(max_px / (size * ratio))
+def wrap(text: str, max_px: float, size: float, ratio: float = 0.5) -> list[str]:
+    max_chars = max(1, int(max_px / (size * ratio)))
     lines, cur = [], ""
     for word in text.split():
         if len(cur) + len(word) + 1 > max_chars and cur:
@@ -96,380 +158,411 @@ def wrap(text: str, max_px: float, size: float, ratio: float = 0.53) -> list[str
     return lines + [cur] if cur else lines
 
 
-def lucide(name: str, x: float, y: float, size: float, color: str = NEON, sw: float = 2) -> str:
+def lucide(name: str, x: float, y: float, size: float, color: str, sw: float = 2) -> str:
     return (
-        f'<g transform="translate({x:.0f} {y:.0f}) scale({size / 24:.3f})" fill="none" stroke="{color}" '
+        f'<g transform="translate({x:.1f} {y:.1f}) scale({size / 24:.3f})" fill="none" stroke="{color}" '
         f'stroke-width="{sw}" stroke-linecap="round" stroke-linejoin="round">{LUCIDE[name]}</g>'
     )
 
 
-def svg(height: int, body: str, label: str, defs: str = "", width: int = W) -> str:
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" fill="none" role="img" aria-label="{esc(label)}">
+def brand_vector(name: str) -> tuple[str, str]:
+    """(viewBox, inner markup) of a single-colour brand SVG."""
+    raw = (BRAND / f"{name}.svg").read_text()
+    vb = re.search(r'viewBox="([^"]+)"', raw).group(1)
+    inner = re.sub(r"^.*?<svg[^>]*>|</svg>\s*$", "", raw, flags=re.S)
+    return vb, inner
+
+
+def text(x, y, s, size, color=FG, weight=400, family=SANS, anchor="start", tracking=None, extra="") -> str:
+    ls = f' letter-spacing="{tracking}"' if tracking is not None else ""
+    return (
+        f'<text x="{x:.1f}" y="{y:.1f}" fill="{color}" font-family="{family}" font-size="{size}" '
+        f'font-weight="{weight}" text-anchor="{anchor}"{ls}{extra}>{s}</text>'
+    )
+
+
+def mono(x, y, s, size, color=FG, weight=400, anchor="start", tracking=None) -> str:
+    return text(x, y, esc(s), size, color, weight, MONO, anchor, tracking,
+                extra=' style="font-feature-settings:\'tnum\',\'zero\'"')
+
+
+def anim(cls: str, delay: float = 0.0) -> str:
+    return f'class="{cls}" style="animation-delay:{delay:.2f}s"'
+
+
+# Shared CSS: every loop is gated on prefers-reduced-motion. Without the
+# media match (or without CSS animation support) the static final frame shows.
+BASE_CSS = f"""
+    .in, .draw, .retract, .pulse, .float, .drift, .rise {{ transform-box: fill-box; }}
+    @media (prefers-reduced-motion: no-preference) {{
+      .in {{ animation: in {CYCLE}s {EASE} infinite both; }}
+      .draw {{ transform-origin: left center; animation: draw {CYCLE}s {EASE} infinite both; }}
+      .pulse {{ animation: pulse 2s ease-in-out infinite; }}
+      .float {{ transform-origin: center; animation: float 9s ease-in-out infinite alternate; }}
+      .retract {{ transform-origin: right center; animation: retract {CYCLE}s {EASE} infinite both; }}
+      .drift {{ animation: drift 18s ease-in-out infinite alternate; }}
+      .rise {{ animation: rise {CYCLE}s {EASE} infinite both; }}
+    }}
+    @keyframes in {{ 0% {{ opacity: 0; transform: translateY(12px); }} 6%, 95% {{ opacity: 1; transform: none; }} 100% {{ opacity: 0; }} }}
+    @keyframes draw {{ 0% {{ transform: scaleX(0); }} 9%, 95% {{ transform: scaleX(1); }} 100% {{ transform: scaleX(0); opacity: 0; }} }}
+    @keyframes pulse {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: .35; }} }}
+    @keyframes float {{ from {{ transform: translateY(4px) rotate(-0.6deg); }} to {{ transform: translateY(-8px) rotate(0.6deg); }} }}
+    @keyframes drift {{ from {{ transform: translateX(-36px); }} to {{ transform: translateX(36px); }} }}
+    @keyframes rise {{ 0% {{ opacity: 0; transform: translateY(28px); }} 10%, 95% {{ opacity: 1; transform: none; }} 100% {{ opacity: 0; }} }}
+"""
+
+
+def svg(height: int, body: str, label: str, defs: str = "", css: str = "") -> str:
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{height}" viewBox="0 0 {W} {height}" fill="none" role="img" aria-label="{esc(label)}">
+  <style>{BASE_CSS}{css}  </style>
   <defs>
-    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>
-    <filter id="glow" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="12"/></filter>
-    <linearGradient id="glassEdge" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fff" stop-opacity=".16"/>
-      <stop offset="1" stop-color="#fff" stop-opacity=".06"/>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="60"/></filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="haze" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" stroke="{NEON_SOFT}" stroke-opacity=".07"/>
+    </pattern>
+    <linearGradient id="fadeY" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".15" stop-color="#fff"/>
+      <stop offset=".85" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
     </linearGradient>
+    <mask id="gridMask"><rect width="{W}" height="{height}" fill="url(#fadeY)"/></mask>
+    <clipPath id="frame"><rect width="{W}" height="{height}" rx="24"/></clipPath>
 {defs}  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="{W}" height="{height}" fill="{MIDNIGHT}"/>
 {body}
+  </g>
+  <rect x=".5" y=".5" width="{W - 1}" height="{height - 1}" rx="23.5" stroke="#fff" stroke-opacity=".08"/>
 </svg>
 """
 
 
-def panel(x, y, w, h, r=24, border=None, border_opacity=1.0) -> str:
-    stroke = f'stroke="{border}" stroke-opacity="{border_opacity}"' if border else 'stroke="url(#glassEdge)"'
-    return f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="{r}" fill="{CARD}" {stroke}/>'
-
-
-def page_bg(height: int, width: int = W) -> str:
+def blueprint(height: int, pool_x: float = 0.12, pool_y: float = 0.2) -> str:
+    """.blueprint: faint cobalt grid + a pool of light at the start."""
     return (
-        f'  <rect width="{width}" height="{height}" rx="28" fill="{MIDNIGHT}"/>\n'
-        f'  <rect x=".5" y=".5" width="{width - 1}" height="{height - 1}" rx="27.5" stroke="#fff" stroke-opacity=".08"/>\n'
+        f'    <ellipse cx="{W * pool_x:.0f}" cy="{height * pool_y:.0f}" rx="{W * .3:.0f}" ry="{height * .4:.0f}" fill="{COBALT}" opacity=".32" filter="url(#blur)"/>\n'
+        f'    <rect width="{W}" height="{height}" fill="url(#grid)" mask="url(#gridMask)"/>\n'
     )
 
 
-def heading(x: int, y: int, eyebrow: str, title: str, delay: float = 0) -> str:
+def section_title(y: float, title: str, sub: str = "", delay: float = 0) -> str:
+    """SECTION_TITLE: medium, -0.03em, max 24ch; supporting text in muted."""
+    out = f'    <g {anim("in", delay)}>\n'
+    out += "      " + text(GUTTER, y, esc(title), 44, FG, 500, tracking="-1.3") + "\n"
+    for i, line in enumerate(wrap(sub, 640, 17)) if sub else []:
+        out += "      " + text(GUTTER, y + 44 + i * 27, esc(line), 17, MUTED) + "\n"
+    return out + "    </g>\n"
+
+
+def link_line(x: float, y: float, label: str, delay: float = 0) -> str:
+    w = len(label) * 16 * 0.455
     return (
-        f'  <g opacity="1">{enter(delay)}\n'
-        f'    <text x="{x}" y="{y}" fill="{NEON}" font-family="{MONO}" font-size="14" letter-spacing="2.5">{esc(eyebrow.upper())}</text>\n'
-        f'    <text x="{x}" y="{y + 46}" fill="{FG}" font-family="{SANS}" font-size="36" font-weight="700" letter-spacing="-0.5">{esc(title)}</text>\n'
-        f"  </g>\n"
+        f'    <g {anim("in", delay)}>{text(x, y, esc(label), 16, NEON_SOFT, 500)}'
+        f'{lucide("arrow-right", x + w + 8, y - 13, 16, NEON_SOFT)}</g>\n'
     )
 
 
-def mesh(x, y, w, h, r, clip_id: str) -> tuple[str, str]:
-    """The site's .neon-mesh: three neon radial fields plus a drifting blob."""
-    defs = f'    <clipPath id="{clip_id}"><rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{r}"/></clipPath>\n'
-    blobs = [
-        (x + w * 0.18, y + h * 0.14, w * 0.33, h * 0.55, COBALT, 0.95),
-        (x + w * 0.88, y + h * 0.28, w * 0.26, h * 0.5, NEON, 0.85),
-        (x + w * 0.50, y + h * 1.05, w * 0.36, h * 0.42, NEON, 0.7),
-    ]
-    body = f'  <g clip-path="url(#{clip_id})">\n    <rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{MIDNIGHT}"/>\n'
-    for cx, cy, rx, ry, c, o in blobs:
-        body += f'    <ellipse cx="{cx:.0f}" cy="{cy:.0f}" rx="{rx:.0f}" ry="{ry:.0f}" fill="{c}" opacity="{o}" filter="url(#blur)"/>\n'
-    body += (
-        f'    <ellipse cx="{x + w * 0.6:.0f}" cy="{y + h * 0.6:.0f}" rx="{w * 0.24:.0f}" ry="{h * 0.4:.0f}" fill="{COBALT}" opacity=".6" filter="url(#blur)">'
-        f'<animateTransform attributeName="transform" type="translate" values="{-w * .04:.0f} {-h * .03:.0f};{w * .06:.0f} {h * .05:.0f};{-w * .04:.0f} {-h * .03:.0f}" '
-        f'dur="{CYCLE:.0f}s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/></ellipse>\n'
-        f"  </g>\n"
-        f'  <rect x="{x + .5}" y="{y + .5}" width="{w - 1}" height="{h - 1}" rx="{r}" stroke="#fff" stroke-opacity=".1"/>\n'
-    )
-    return defs, body
-
-
-def neon_text(x, y, text, size, anchor="middle", delay=0.0) -> str:
-    attrs = f'x="{x:.0f}" y="{y}" text-anchor="{anchor}" font-family="{SANS}" font-size="{size}" font-weight="700" letter-spacing="-1.5"'
+def status(x: float, y: float, label: str, size: int = 14) -> str:
+    """Status marker: neon-soft dot + neon-soft 500 text. Live work only."""
     return (
-        f'  <g opacity="1">{enter(delay)}\n'
-        f'    <text {attrs} fill="{NEON}" filter="url(#glow)" opacity=".9">{esc(text)}'
-        f'<animate attributeName="opacity" values=".65;1;.65" dur="4s" repeatCount="indefinite"/></text>\n'
-        f'    <text {attrs} fill="#fff">{esc(text)}</text>\n'
-        f"  </g>\n"
+        f'<circle {anim("pulse")} cx="{x + 3:.1f}" cy="{y - size * .34:.1f}" r="3.2" fill="{NEON_SOFT}"/>'
+        + text(x + 14, y, esc(label), size, NEON_SOFT, 500)
     )
-
-
-def pill(cx, y, text, solid=None, text_color="#fff", size=14, mono=True, pad=22, h=34, arrow=False) -> str:
-    font = MONO if mono else SANS
-    spacing = 2.4 if mono else 0
-    text_w = len(text) * (size * (0.62 if mono else 0.55) + spacing) - spacing
-    tw = text_w + (22 if arrow else 0)
-    w = tw + pad * 2
-    x = cx - w / 2
-    if solid:
-        out = f'<rect x="{x:.0f}" y="{y}" width="{w:.0f}" height="{h}" rx="{h / 2}" fill="{solid}"/>'
-    else:
-        out = f'<rect x="{x:.0f}" y="{y}" width="{w:.0f}" height="{h}" rx="{h / 2}" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".2"/>'
-    # textLength pins the exact width, so the pill fits whatever font renders
-    ls = f' letter-spacing="{spacing}" textLength="{text_w:.0f}" lengthAdjust="spacing"' if mono else ""
-    tx = cx - (11 if arrow else 0)
-    out += (
-        f'<text x="{tx:.0f}" y="{y + h / 2 + size * 0.36:.0f}" text-anchor="middle" fill="{text_color}" '
-        f'font-family="{font}" font-size="{size}" font-weight="{400 if mono else 600}"{ls}>{esc(text)}</text>'
-    )
-    if arrow:
-        out += lucide("arrow", cx + tw / 2 - 16, y + h / 2 - 8, 16, text_color)
-    return out
 
 
 # -------------------------------------------------------------------- hero
 
 def build_hero() -> str:
-    H = 460
-    defs, body = mesh(0, 0, W, H, 40, "heroClip")
-    cx = W / 2
-    body += f'  <g opacity="1">{enter(0)}{pill(cx, 92, "SOFTWARE ENGINEER & ARCHITECT")}</g>\n'
-    body += neon_text(cx, 212, "Leonardo Lopes", 84, delay=0.2)
-    body += (
-        f'  <g opacity="1">{enter(0.45)}\n'
-        f'    <text x="{cx:.0f}" y="266" text-anchor="middle" fill="#fff" fill-opacity=".85" font-family="{SANS}" font-size="21">'
-        f'Tech Lead <tspan fill="{NEON_SOFT}">@Linda Lifetech</tspan> · Buildbox</text>\n'
-        f'    <text x="{cx:.0f}" y="298" text-anchor="middle" fill="#fff" fill-opacity=".65" font-family="{SANS}" font-size="17">'
-        f"Web, backend and mobile, built to be easy to change and to keep running after launch.</text>\n"
-        f"  </g>\n"
-    )
-    body += (
-        f'  <g opacity="1">{enter(0.7)}'
-        f'{pill(cx - 112, 346, "leonardolopes.tech", solid="#fff", text_color=MIDNIGHT, mono=False, size=16, h=48, pad=26, arrow=True)}'
-        f'{pill(cx + 122, 346, "Get in touch", mono=False, size=16, h=48, pad=28)}'
-        f"</g>\n"
-    )
-    return svg(H, body, "Leonardo Lopes, Software Engineer & Architect, Tech Lead at Linda Lifetech (Buildbox)", defs)
+    TOP = 720  # copy + badge area; the cost slab sits below it
+    H = TOP + 300
+    body = blueprint(H, 0.1, 0.18)
+    # page-glow: ambient cobalt from the top
+    body += f'    <ellipse cx="{W / 2:.0f}" cy="-40" rx="560" ry="300" fill="{COBALT}" opacity=".35" filter="url(#blur)"/>\n'
 
-
-# ------------------------------------------------------------------ layers
-
-def build_layers() -> str:
-    H = 430
-    body = page_bg(H)
-    body += heading(48, 70, "What I work on", "Three layers, one standard")
-    cards = [
-        ("layers", "Frontend", "Interfaces that feel fast. Component systems, accessible markup, and state that stays predictable as the product grows."),
-        ("server", "Backend", "APIs and services in Node.js, TypeScript and Go. I focus on clear boundaries, observability and running cost."),
-        ("smartphone", "Mobile", "React Native apps with native modules when the device needs it, shipped with the same care as the web."),
-    ]
-    gap = 16
-    cw = (W - 96 - gap * 2) / 3
-    for i, (icon, title, desc) in enumerate(cards):
-        x = 48 + i * (cw + gap)
-        y = 146
-        lines = wrap(desc, cw - 56, 15.5)
-        text = "".join(
-            f'<text x="{x + 28:.0f}" y="{y + 132 + j * 24}" fill="{MUTED}" font-family="{SANS}" font-size="15.5">{esc(l)}</text>'
-            for j, l in enumerate(lines)
-        )
-        body += (
-            f'  <g opacity="1">{enter(0.2 + 0.15 * i)}\n'
-            f"    {panel(x, y, cw, 252)}\n"
-            f'    <rect x="{x + 28:.0f}" y="{y + 26}" width="44" height="44" rx="12" fill="{NEON}" fill-opacity=".15" stroke="{NEON}" stroke-opacity=".3"/>\n'
-            f"    {lucide(icon, x + 40, y + 38, 20)}\n"
-            f'    <text x="{x + 28:.0f}" y="{y + 102}" fill="{FG}" font-family="{SANS}" font-size="21" font-weight="600">{esc(title)}</text>\n'
-            f"    {text}\n"
-            f"  </g>\n"
-        )
-    return svg(H, body, "What I work on: Frontend, Backend and Mobile")
-
-
-# ------------------------------------------------------------------- about
-
-def build_about() -> str:
-    H = 420
-    body = page_bg(H)
-    memoji = data_uri(SRC / "memoji.png", "image/png")
-    lx, ly, lw, lh = 32, 32, 700, H - 64
-    desc = (
-        "Healthtech product for early breast-cancer detection using AI. Led a zero-downtime "
-        "migration of a live system from a monolith to Go and Node.js/TypeScript microservices, "
-        "micro frontends and React Native. Cut cloud cost by ~59%, introduced OpenTelemetry and "
-        "defined infrastructure as code with Terraform."
-    )
-    lines = wrap(desc, lw - 64, 15.5)
-    text = "\n".join(
-        f'    <text x="{lx + 32}" y="{ly + 176 + j * 25}" fill="{MUTED}" font-family="{SANS}" font-size="15.5">{esc(l)}</text>'
-        for j, l in enumerate(lines)
-    )
-    ty = ly + 176 + len(lines) * 25 + 22
-    body += f"""  <g opacity="1">{enter(0)}
-    {panel(lx, ly, lw, lh, border=NEON, border_opacity=0.3)}
-    <rect x="{lx + 32}" y="{ly + 32}" width="140" height="26" rx="8" fill="{NEON}" fill-opacity=".15"/>
-    <text x="{lx + 102}" y="{ly + 50}" text-anchor="middle" fill="{NEON}" font-family="{MONO}" font-size="12" letter-spacing="2" textLength="112" lengthAdjust="spacing">CURRENT ROLE</text>
-    <text x="{lx + 32}" y="{ly + 104}" fill="{FG}" font-family="{SANS}" font-size="30" font-weight="600">Tech Lead @Linda Lifetech</text>
-    <text x="{lx + 32}" y="{ly + 136}" fill="{MUTED}" font-family="{SANS}" font-size="17">Buildbox · Software Engineer &amp; Architect</text>
-{text}
-    <text x="{lx + 32}" y="{ty}" fill="{NEON}" font-family="{SANS}" font-size="15" font-weight="500">Full experience history</text>
-    {lucide("arrow", lx + 202, ty - 13, 16)}
-    <image x="{lx + lw - 124}" y="{ly + 24}" width="96" height="96" href="{memoji}">
-      <animateTransform attributeName="transform" type="translate" values="0 0;0 -6;0 0" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/>
-    </image>
-  </g>
+    # --- badge (the caricature, lit from below), floating beside the copy
+    bw, bh = 300, 390
+    bx, by = 756, (TOP - bh) / 2
+    badge_cx = bx + bw / 2
+    pvb, pinner = brand_vector("portrait")
+    pw, ph = 196, 228
+    px, py = bx + (bw - pw) / 2, by + 34
+    body += f"""    <ellipse cx="{badge_cx:.0f}" cy="{by + bh / 2:.0f}" rx="230" ry="260" fill="{COBALT}" opacity=".28" filter="url(#blur)"/>
+    <g class="float">
+      <rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="18" fill="#05070c" stroke="#fff" stroke-opacity=".12"/>
+      <rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="18" fill="url(#grid)" opacity=".8"/>
+      <ellipse cx="{badge_cx:.0f}" cy="{py + ph * .78:.0f}" rx="90" ry="70" fill="{COBALT}" opacity=".55" filter="url(#haze)"/>
+      <rect x="{px:.0f}" y="{py:.0f}" width="{pw}" height="{ph}" fill="{NEON}" mask="url(#portraitMask)" filter="url(#glow)" opacity=".75"/>
+      <rect x="{px:.0f}" y="{py:.0f}" width="{pw}" height="{ph}" fill="url(#ink)" mask="url(#portraitMask)"/>
+      {text(bx + 26, by + bh - 82, "Leonardo Lopes", 25, FG, 600, tracking="-0.6")}
+      {text(bx + 26, by + bh - 56, "Tech Lead · Software Engineer &amp; Architect", 13, MUTED)}
+      {mono(bx + 26, by + bh - 28, "IN PRODUCTION SINCE 2020", 13, NEON_SOFT, tracking="1.6")}
+    </g>
 """
-    stats = [
-        ("~59%", "Cloud cost reduction on a live system"),
-        ("Zero downtime", "Monolith to microservices migration"),
-        ("6+ years", "Shipping web, backend and mobile"),
-    ]
-    rx = lx + lw + 16
-    rw = W - rx - 32
-    gap = 14
-    rh = (lh - gap * 2) / 3
-    for i, (num, label) in enumerate(stats):
-        y = ly + i * (rh + gap)
-        body += (
-            f'  <g opacity="1">{enter(0.2 + 0.15 * i)}\n'
-            f"    {panel(rx, y, rw, rh)}\n"
-            f'    <text x="{rx + 28}" y="{y + rh / 2 + 4:.0f}" fill="{FG}" font-family="{SANS}" font-size="34" font-weight="700">{esc(num)}</text>\n'
-            f'    <text x="{rx + 28}" y="{y + rh / 2 + 30:.0f}" fill="{MUTED}" font-family="{SANS}" font-size="14">{esc(label)}</text>\n'
-            f"  </g>\n"
-        )
-    return svg(H, body, "Current role: Tech Lead at Linda Lifetech (Buildbox). ~59% cloud cost reduction, zero-downtime migration, 6+ years.")
-
-
-# -------------------------------------------------------------- experience
-
-def build_experience() -> str:
-    H = 430
-    body = page_bg(H)
-    body += heading(48, 70, "Experience", "Six years of shipping")
-    # (when, project, role, line1, line2, via_buildbox)
-    jobs = [
-        ("2020 → 2021", "Freelance", "Mobile Engineer", "React Native apps,", "multiple clients", False),
-        ("2021 → 2022", "Poliedro", "Software Engineer", "Go HLS streaming,", "580+ teaching units", False),
-        ("2022 → 2023", "MSD", "Software Engineer", "Gamification app,", "in half the ETA", True),
-        ("2023 → 2024", "Petrópolis", "Software Engineer", "Main app (97% rev.)", "−50% load time", True),
-        ("2024 → 2025", "Lactalis", "Software Engineer", "Pricing platform,", "27 states of rules", True),
-        ("2025 → now", "Linda Lifetech", "Tech Lead", "Go microservices,", "−59% cloud, IaC", True),
-    ]
-    line_y = 236
-    x_start = 72
-    step = (W - 48 - 150 - x_start) / (len(jobs) - 1)
-    length = (W - 48) - x_start
-    draw = loop("stroke-dashoffset", f"{length:.0f}", 0, 0.2, 2.4)
-    body += (
-        f'  <line x1="{x_start}" y1="{line_y}" x2="{W - 48}" y2="{line_y}" stroke="#fff" stroke-opacity=".1" stroke-width="2"/>\n'
-        f'  <line x1="{x_start}" y1="{line_y}" x2="{W - 48}" y2="{line_y}" stroke="{NEON}" stroke-width="3" filter="url(#glowSoft)" '
-        f'stroke-dasharray="{length:.0f}" stroke-dashoffset="0">{draw}</line>\n'
-        f'  <line x1="{x_start}" y1="{line_y}" x2="{W - 48}" y2="{line_y}" stroke="{NEON}" stroke-width="2" '
-        f'stroke-dasharray="{length:.0f}" stroke-dashoffset="0">{draw}</line>\n'
+    defs = (
+        f'    <linearGradient id="ink" x1="0" y1="0" x2="0" y2="1"><stop offset=".4" stop-color="{FG}"/><stop offset="1" stop-color="{NEON_SOFT}"/></linearGradient>\n'
+        f'    <mask id="portraitMask" maskUnits="userSpaceOnUse"><svg x="{px:.0f}" y="{py:.0f}" width="{pw}" height="{ph}" viewBox="{pvb}" style="color:#fff">{pinner}</svg></mask>\n'
     )
-    bb = [i for i, j in enumerate(jobs) if j[5]]
-    bx1, bx2, by = x_start + step * bb[0] - 12, W - 48, line_y - 46
+
+    # --- copy column
+    x = GUTTER
     body += (
-        f'  <g opacity="1">{fade(0.3)}\n'
-        f'    <path d="M{bx1:.0f} {by + 14} V{by} H{bx2} V{by + 14}" stroke="{NEON}" stroke-opacity=".45" stroke-width="1.5"/>\n'
-        f'    <rect x="{bx1 + 18:.0f}" y="{by - 14}" width="196" height="28" rx="8" fill="{MIDNIGHT}"/>\n'
-        f'    <rect x="{bx1 + 18:.0f}" y="{by - 14}" width="196" height="28" rx="8" fill="{NEON}" fill-opacity=".15"/>\n'
-        f'    <text x="{bx1 + 116:.0f}" y="{by + 5}" text-anchor="middle" fill="{NEON}" font-family="{MONO}" font-size="12" letter-spacing="2" textLength="164" lengthAdjust="spacing">BUILDBOX PROJECTS</text>\n'
-        f"  </g>\n"
+        f'    <g {anim("in", 0)}>{text(x, 150, esc(HERO["name"]), 20, FG, 500)}'
+        f'{text(x, 176, esc(HERO["role"]), 15, NEON_SOFT)}</g>\n'
     )
-    for i, (when, company, role, d1, d2, _) in enumerate(jobs):
-        cx = x_start + step * i
-        current = i == len(jobs) - 1
-        delay = 0.4 + 0.3 * i
-        pulse = ""
-        if current:
-            pulse = (
-                f'<circle cx="{cx:.0f}" cy="{line_y}" r="8" fill="none" stroke="{NEON}" stroke-width="2">'
-                '<animate attributeName="r" values="8;24" dur="1.8s" repeatCount="indefinite"/>'
-                '<animate attributeName="opacity" values=".9;0" dur="1.8s" repeatCount="indefinite"/></circle>'
-            )
-        node = f'<circle cx="{cx:.0f}" cy="{line_y}" r="8" fill="{NEON if current else MIDNIGHT}" stroke="{NEON}" stroke-width="2"/>'
-        tx = cx - 8
-        body += f"""  <g opacity="1">{enter(delay)}
-    {pulse}{node}
-    <text x="{tx:.0f}" y="{line_y + 46}" fill="{NEON if current else MUTED}" font-family="{MONO}" font-size="14">{esc(when)}</text>
-    <text x="{tx:.0f}" y="{line_y + 76}" fill="{FG}" font-family="{SANS}" font-size="20" font-weight="600">{esc(company)}</text>
-    <text x="{tx:.0f}" y="{line_y + 99}" fill="{NEON_SOFT if current else MUTED}" font-family="{SANS}" font-size="16">{esc(role)}</text>
-    <text x="{tx:.0f}" y="{line_y + 128}" fill="{MUTED}" fill-opacity=".8" font-family="{MONO}" font-size="13">{esc(d1)}</text>
-    <text x="{tx:.0f}" y="{line_y + 148}" fill="{MUTED}" fill-opacity=".8" font-family="{MONO}" font-size="13">{esc(d2)}</text>
-  </g>
+    years = career_words()
+    lines = [
+        (f"{years} years of software", None),
+        ("running in ", "production"),
+        ("Now I lead the team", None),
+        ("that ships it.", None),
+    ]
+    y = 262
+    for i, (a, lit) in enumerate(lines):
+        content = esc(a) + (f'<tspan fill="{NEON_SOFT}">{esc(lit)}</tspan><tspan fill="{FG}">.</tspan>' if lit else "")
+        body += f'    <g {anim("in", 0.12 + 0.08 * i)}>{text(x, y, content, 60, FG, 600, tracking="-2.4")}</g>\n'
+        y += 62
+    y += 8
+    body += (
+        f'    <g {anim("in", 0.5)}>{text(x, y, esc(HERO["current"]), 16, FG)}'
+        f'{status(x, y + 28, "Now · in production", 14)}'
+        f'{text(x, y + 56, esc(HERO["availability"]), 15, MUTED)}</g>\n'
+    )
+    by2 = y + 84
+    body += (
+        f'    <g {anim("in", 0.65)}>'
+        # One light CTA; the whole hero image links to leonardolopes.tech
+        f'<rect x="{x}" y="{by2}" width="166" height="48" rx="24" fill="#fff"/>'
+        f'{text(x + 28, by2 + 30, "Know more", 16, MIDNIGHT, 500)}'
+        f'{lucide("arrow-up-right", x + 120, by2 + 15, 18, MIDNIGHT)}</g>\n'
+    )
+
+    # --- cost slab: the featured result, lit because the platform runs in production
+    sy = TOP + 10
+    bar_y, bar_h = sy + 168, 56
+    bar_x0, bar_x1 = GUTTER, W - GUTTER
+    cut_w = (bar_x1 - bar_x0) * (1 - SLAB["ratio"])
+    lit_x = bar_x0 + cut_w
+    cap_x = 760
+    defs += f'    <linearGradient id="slabLit" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{NEON}"/><stop offset=".7" stop-color="{NEON_SOFT}"/><stop offset="1" stop-color="#fff"/></linearGradient>\n'
+    slab_label = "Cloud bill · " + SLAB["client"] + " · in production"
+    body += (
+        f'    <g {anim("in", 0.9)}>{status(GUTTER, sy, slab_label, 15)}'
+        f'{mono(GUTTER - 6, sy + 116, SLAB["metric"], 128, FG, 500, tracking="-5")}</g>\n'
+    )
+    cap = wrap(SLAB["caption"], bar_x1 - cap_x, 16, 0.49)
+    body += f'    <g {anim("in", 1.0)}>' + "".join(
+        text(cap_x, sy + 116 - (len(cap) - 1 - i) * 26, esc(line), 16, MUTED) for i, line in enumerate(cap)
+    ) + "</g>\n"
+    body += (
+        f'    <g {anim("in", 1.1)}><ellipse cx="{lit_x + (bar_x1 - lit_x) / 2:.0f}" cy="{bar_y + bar_h + 30}" rx="{(bar_x1 - lit_x) / 2:.0f}" ry="70" fill="{NEON}" opacity=".32" filter="url(#haze)"/></g>\n'
+        f'    <g {anim("in", 1.0)}><rect x="{bar_x0 + .5}" y="{bar_y + .5}" width="{cut_w - 1:.0f}" height="{bar_h - 1}" rx="5" stroke="#fff" stroke-opacity=".25" stroke-dasharray="5 5"/></g>\n'
+        f'    <g {anim("retract", 1.0)}>\n'
+        f'      <rect x="{lit_x:.0f}" y="{bar_y}" width="{bar_x1 - lit_x:.0f}" height="{bar_h}" rx="5" fill="{NEON}" filter="url(#haze)" opacity=".7"/>\n'
+        f'      <rect x="{lit_x:.0f}" y="{bar_y}" width="{bar_x1 - lit_x:.0f}" height="{bar_h}" rx="5" fill="url(#slabLit)"/>\n'
+        f"    </g>\n"
+        f'    <g {anim("in", 2.2)}>{text(bar_x0 + 18, bar_y + 35, "Before " + f"<tspan fill=\"{FG}\" font-weight=\"500\">100%</tspan>", 16, MUTED)}'
+        f'{text(lit_x + 18, bar_y + 35, "Now <tspan font-weight=\"600\">" + str(round(SLAB["ratio"] * 100)) + "%</tspan>", 16, MIDNIGHT, 500)}</g>\n'
+    )
+    # the lit segment starts full width and retracts to the real ratio (900ms on the site)
+    css = (
+        "\n    @media (prefers-reduced-motion: no-preference) {\n"
+        f"      @keyframes retract {{ 0% {{ transform: scaleX({1 / SLAB['ratio']:.4f}); opacity: 0; }} 2% {{ transform: scaleX({1 / SLAB['ratio']:.4f}); opacity: 1; }} 9%, 95% {{ transform: scaleX(1); opacity: 1; }} 100% {{ opacity: 0; }} }}\n"
+        "    }\n"
+    )
+    return svg(H, body, f"Leonardo Lopes, Tech Lead · Software Engineer & Architect. {years} years of software running in production. Now leading the team that ships it. Linda Lifetech cloud bill: " + SLAB["metric"] + ".", defs, css)
+
+
+# ------------------------------------------------------------------ ledger
+
+def build_ledger() -> str:
+    row_h = 150
+    top = 220
+    H = top + len(LEDGER) * row_h + 90
+    body = blueprint(H)
+    body += section_title(96, "Measured in production.",
+                          "Numbers from systems I helped ship before my current role. Full role descriptions are in the experience history.")
+    c1, c2, c3 = GUTTER, GUTTER + 250, W - GUTTER - 230
+    body += f'    <path d="M{GUTTER} {top} H{W - GUTTER}" stroke="#fff" stroke-opacity=".12"/>\n'
+    for i, (metric, unit, period, summary, stack, client, role) in enumerate(LEDGER):
+        y = top + i * row_h
+        d = 0.25 + 0.15 * i
+        lines = wrap(summary, c3 - c2 - 40, 16, 0.48)
+        summ = "".join(text(c2, y + 46 + j * 25, esc(l), 16, FG, extra=' fill-opacity=".85"') for j, l in enumerate(lines))
+        stack_txt = text(c2, y + 46 + len(lines) * 25 + 10, esc(" · ".join(stack)), 14, NEON_SOFT) if stack else ""
+        body += f"""    <g {anim("in", d)}>
+      {mono(c1, y + 66, metric, 52, FG, 500, tracking="-1.5")}
+      {text(c1, y + 94, esc(unit), 14, MUTED)}
+      {mono(c1, y + 118, period, 13, MUTED)}
+      {summ}{stack_txt}
+      {text(c3, y + 46, esc(client), 15, FG, 500)}
+      {text(c3, y + 70, esc(role), 14, MUTED)}
+    </g>
+    <path d="M{GUTTER} {y + row_h} H{W - GUTTER}" stroke="#fff" stroke-opacity=".12"/>
 """
-    defs = '    <filter id="glowSoft" x="-5%" y="-500%" width="110%" height="1100%"><feGaussianBlur stdDeviation="4"/></filter>\n'
-    return svg(H, body, "Experience since 2020: Freelance, Poliedro, then Buildbox projects for MSD, Grupo Petrópolis, Lactalis and Linda Lifetech", defs)
+    fy = top + len(LEDGER) * row_h + 50
+    body += f'    <g {anim("in", 0.9)}>{text(GUTTER, fy, "Before that: React Native apps for freelance clients, from 2020.", 15, MUTED)}</g>\n'
+    body += link_line(W - GUTTER - 168, fy, "See my experience", 1.0)
+    return svg(H, body, "Earlier results: −80% worst-case load time at Grupo Petrópolis, 27 Brazilian states on one pricing platform for Lactalis, 0.5× the estimated delivery time at MSD, 580+ teaching units served for Poliedro.")
+
+
+# ------------------------------------------------------------------ career
+
+def build_career() -> str:
+    H = 160 + 64 + 44 + sum(50 + (56 if e else 12) + 14 for *_, e in LANES) + 40
+    body = ""
+    # FloatingLines: faint cobalt filaments drifting behind the section
+    for i in range(5):
+        y0 = 120 + i * 22
+        amp = 26 + i * 6
+        d = f"M-80 {y0} C 240 {y0 - amp}, 480 {y0 + amp}, 720 {y0} S 1120 {y0 - amp}, 1300 {y0}"
+        body += f'    <path class="drift" style="animation-delay:-{i * 3}s" d="{d}" stroke="{COBALT}" stroke-opacity="{.35 - i * .05:.2f}" stroke-width="1.2"/>\n'
+    body += section_title(96, f"Continuous production work since {CAREER_START.strftime('%B %Y')}.")
+
+    px, py, pw = GUTTER, 150, W - GUTTER * 2
+    ph = H - py - 48
+    body += f'    <rect x="{px}" y="{py}" width="{pw}" height="{ph}" rx="22" fill="{BACKGROUND}" fill-opacity=".72" stroke="{NEON_SOFT}" stroke-opacity=".15"/>\n'
+    ix0, ix1 = px + 40, px + pw - 40
+    span_days = (TODAY - CAREER_START).days
+
+    def xo(d: dt.date | None) -> float:
+        d = d or TODAY
+        return ix0 + (ix1 - ix0) * (d - CAREER_START).days / span_days
+
+    # ruler: year labels + one tick per month
+    ry = py + 64
+    body += f'    <g {anim("in", 0.1)}>\n'
+    for year in range(CAREER_START.year, TODAY.year + 1):
+        d = CAREER_START if year == CAREER_START.year else dt.date(year, 1, 1)
+        x = xo(d)
+        anchor = "start" if year == CAREER_START.year else ("end" if x > ix1 - 30 else "middle")
+        body += "      " + mono(x, ry - 14, str(year), 13, MUTED, anchor=anchor) + "\n"
+    months = (TODAY.year - CAREER_START.year) * 12 + TODAY.month - CAREER_START.month
+    ticks = "".join(f"M{ix0 + (ix1 - ix0) * m / months:.1f} {ry} v-6" for m in range(months + 1))
+    body += f'      <path d="{ticks}" stroke="#fff" stroke-opacity=".18"/>\n'
+    body += f'      <path d="M{px} {ry + .5} H{px + pw}" stroke="#fff" stroke-opacity=".12"/>\n    </g>\n'
+
+    defs = f'    <linearGradient id="filament" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{NEON}"/><stop offset="1" stop-color="{NEON_SOFT}"/></linearGradient>\n'
+    y = ry + 44
+    for i, (label, start, end, engagements) in enumerate(LANES):
+        d = 0.3 + 0.25 * i
+        live = end is None
+        x0, x1 = xo(start), xo(end)
+        lane = f'    <g {anim("in", d)}>\n'
+        lane += "      " + text(ix0, y, esc(label), 19, FG, 500) + "\n"
+        lane += "      " + mono(ix1, y, f"{fmt_month(start)} – {fmt_month(end)}", 13, MUTED, anchor="end") + "\n"
+        lane += f'      <rect x="{ix0}" y="{y + 16}" width="{ix1 - ix0}" height="8" rx="4" fill="#fff" fill-opacity=".05"/>\n'
+        lane += "    </g>\n"
+        fill = 'fill="url(#filament)"' if live else f'fill="{FG}" fill-opacity=".45"'
+        glow = f'<rect x="{x0:.1f}" y="{y + 16}" width="{x1 - x0:.1f}" height="8" rx="4" fill="{NEON}" filter="url(#glow)" opacity=".8"/>' if live else ""
+        lane += f'    <g {anim("draw", d + 0.2)}>{glow}<rect x="{x0:.1f}" y="{y + 16}" width="{x1 - x0:.1f}" height="8" rx="4" {fill}/></g>\n'
+        y_e = y + 50
+        if engagements:
+            lane += f'    <g {anim("in", d + 0.4)}>\n'
+            for j, (name, s, e) in enumerate(engagements):
+                ex = xo(s)
+                ey = y_e + (0 if j % 2 == 0 else 24)
+                tw = len(name) * 14 * 0.5
+                if ex + 10 + tw > ix1:  # keep labels inside the panel
+                    lane += f'      <path d="M{ex:.1f} {ey - 14} v18" stroke="#fff" stroke-opacity=".12"/>' + text(ex - 8, ey, esc(name), 14, NEON_SOFT if e is None else MUTED, anchor="end") + "\n"
+                else:
+                    lane += f'      <path d="M{ex:.1f} {ey - 14} v18" stroke="#fff" stroke-opacity=".12"/>' + text(ex + 8, ey, esc(name), 14, NEON_SOFT if e is None else MUTED) + "\n"
+            lane += "    </g>\n"
+            y += 50 + 56
+        else:
+            y += 50 + 12
+        if i < len(LANES) - 1:
+            lane += f'    <path d="M{ix0} {y - 18} H{ix1}" stroke="#fff" stroke-opacity=".07"/>\n'
+        body += lane
+        y += 14
+    return svg(H, body, f"Career ruler since {CAREER_START.strftime('%B %Y')}: Freelance, Nkey (Poliedro), then Buildbox for MSD, Grupo Petrópolis, Lactalis Group, Linda Lifetech and Callink.", defs)
 
 
 # ------------------------------------------------------------------- stack
 
-STACK = [
-    ("Languages", ["typescript", "javascript", "go", "rust", "python", "node", "bun", "deno"]),
-    ("Frameworks & UI", ["react", "next", "expo", "nest", "express", "fastify", "elysiajs", "electron", "tauri", "tailwind", "shadcn", "react-query"]),
-    ("Data", ["postgres", "mysql", "mariadb", "mongo", "redis", "sqlite", "prisma", "drizzle", "sequelize", "supabase", "graphql"]),
-    ("Cloud & infra", ["aws", "cloudflare", "vercel", "firebase", "docker", "kubernetes", "terraform", "pulumi", "sst", "apachekafka", "github-actions", "opentelemetry"]),
-    ("Testing & DX", ["jest", "vitest", "cypress", "storybook", "biome", "eslint", "git", "vscode", "cursor", "claude", "figma"]),
-]
-# Icons drawn in dark ink that vanish on midnight: render them as a light silhouette
-DARK_ICONS = {"rust", "prisma", "apachekafka", "cypress", "mysql", "electron"}
-
-
 def build_stack() -> str:
-    tile, icon, gap = 58, 34, 12
-    label_w = 230
-    row_h = tile + 16
-    H = 150 + len(STACK) * row_h + 32
-    body = page_bg(H)
-    body += heading(48, 70, "Technologies", "The stack I use daily")
-    y = 150
-    for r, (label, icons) in enumerate(STACK):
-        body += (
-            f'  <g opacity="1">{fade(0.1 + 0.12 * r)}<text x="48" y="{y + tile / 2 + 5:.0f}" fill="{MUTED}" '
-            f'font-family="{MONO}" font-size="13" letter-spacing="1.8">{esc(label.upper())}</text></g>\n'
-        )
-        for i, name in enumerate(icons):
-            x = 48 + label_w + i * (tile + gap)
-            uri = data_uri(SRC / "icons" / f"{name}.svg", "image/svg+xml")
-            off = (tile - icon) / 2
-            filt = ' filter="url(#whiten)"' if name in DARK_ICONS else ""
-            body += (
-                f'  <g opacity="1">{enter(0.15 + 0.12 * r + 0.035 * i)}'
-                f"{panel(x, y, tile, tile, r=14)}"
-                f'<image x="{x + off:.0f}" y="{y + off:.0f}" width="{icon}" height="{icon}" href="{uri}"{filt}>'
-                f"<title>{esc(name)}</title></image>"
-                f"</g>\n"
-            )
-        y += row_h
-    whiten = (
-        '    <filter id="whiten"><feColorMatrix type="matrix" '
-        'values="0 0 0 0 .91  0 0 0 0 .93  0 0 0 0 .98  0 0 0 1 0"/></filter>\n'
-    )
-    return svg(H, body, "Tech stack: TypeScript, Go, Rust, React, Next.js, Expo, NestJS, PostgreSQL, Redis, AWS, Cloudflare, Docker, Kubernetes, Terraform, OpenTelemetry and more", whiten)
+    item_h = 50
+    top = 220
+    H = top + 44 + len(STACK_GROUPS[0][1]) * item_h + 96
+    body = blueprint(H, 0.85, 0.15)
+    body += section_title(96, "Built across the whole system.",
+                          "Interfaces, services, data and the cloud they run on: tools I’ve used in production. Each system gets the ones it needs.")
+    gap = 40
+    cw = (W - GUTTER * 2 - gap * 3) / 4
+    for c, (title, techs) in enumerate(STACK_GROUPS):
+        x = GUTTER + c * (cw + gap)
+        d = 0.2 + 0.12 * c
+        col = f'    <g {anim("in", d)}>\n'
+        col += "      " + text(x, top + 20, esc(title), 15, NEON_SOFT, 500) + "\n"
+        col += f'      <path d="M{x:.1f} {top + 36} h{cw:.1f}" stroke="{NEON}" stroke-opacity=".6"/>\n'
+        for i, tech in enumerate(techs):
+            iy = top + 36 + (i + 1) * item_h
+            col += "      " + text(x, iy - 17, esc(tech), 18, FG) + "\n"
+            col += f'      <path d="M{x:.1f} {iy} h{cw:.1f}" stroke="#fff" stroke-opacity=".08"/>\n'
+        body += col + "    </g>\n"
+    body += link_line(GUTTER, H - 46, "The full catalog, personal projects included", 0.8)
+    return svg(H, body, "Stack. Interfaces: React, Next.js, React Native, Expo, Tailwind CSS, Storybook. Services: TypeScript, Node.js, Go, NestJS, GraphQL, Fastify. Data and messaging: PostgreSQL, MongoDB, Redis, Apache Kafka, Prisma, MySQL. Cloud: AWS, Google Cloud, Azure, Terraform, Kubernetes, OpenTelemetry.")
 
 
-# ----------------------------------------------------------------- explore
+# ----------------------------------------------------------------- contact
 
-def build_explore_card(label: str, desc: str, delay: float) -> str:
-    w, h = 590, 112
-    body = (
-        f'  <g opacity="1">{fade(delay)}\n'
-        f'    <rect x=".5" y=".5" width="{w - 1}" height="{h - 1}" rx="20" fill="{CARD}" stroke="url(#glassEdge)"/>\n'
-        f'    <text x="32" y="50" fill="{FG}" font-family="{SANS}" font-size="21" font-weight="600">{esc(label)}</text>\n'
-        f'    <text x="32" y="78" fill="{MUTED}" font-family="{SANS}" font-size="15">{esc(desc)}</text>\n'
-        f'    <g>{lucide("arrow", w - 58, h / 2 - 12, 24, MUTED)}'
-        f'<animateTransform attributeName="transform" type="translate" values="0 0;3 -3;0 0" dur="2.4s" repeatCount="indefinite"/></g>\n'
-        f"  </g>"
-    )
-    return svg(h, body, f"{label}: {desc}", width=w)
+def build_contact() -> str:
+    row_h = 74
+    top = 230
+    H = top + len(CONTACT_ROWS) * row_h + 56
+    body = section_title(96, "Hiring, or have a product to build?",
+                         "I’m Leonardo Lopes, a tech lead, software engineer and architect working remotely from Brazil (UTC−3). Every channel below reaches me directly.")
+    body += f'    <path d="M{GUTTER} {top} H{W - GUTTER}" stroke="#fff" stroke-opacity=".12"/>\n'
+    for i, (icon, label, detail) in enumerate(CONTACT_ROWS):
+        y = top + i * row_h
+        cy = y + row_h / 2
+        row = f'    <g {anim("in", 0.2 + 0.1 * i)}>'
+        row += lucide(icon, GUTTER, cy - 11, 22, NEON_SOFT)
+        if detail:
+            row += text(GUTTER + 40, cy - 3, esc(label), 22, FG, 500) + text(GUTTER + 40, cy + 21, esc(detail), 14, MUTED)
+        else:
+            row += text(GUTTER + 40, cy + 8, esc(label), 22, FG, 500)
+        row += lucide("arrow-up-right", W - GUTTER - 22, cy - 11, 22, MUTED)
+        row += f'</g>\n    <path d="M{GUTTER} {y + row_h} H{W - GUTTER}" stroke="#fff" stroke-opacity=".12"/>\n'
+        body += row
+    return svg(H, body, "Hiring, or have a product to build? Email, schedule a call, WhatsApp, LinkedIn or GitHub.")
 
 
-# --------------------------------------------------------------------- cta
+# ------------------------------------------------------------------ finale
 
-def build_cta() -> str:
-    H = 260
-    defs, body = mesh(0, 0, W, H, 40, "ctaClip")
-    body += (
-        f'  <g opacity="1">{enter(0)}\n'
-        f'    <text x="72" y="116" fill="#fff" font-family="{SANS}" font-size="40" font-weight="700" letter-spacing="-0.8">Want to build something together?</text>\n'
-        f'    <text x="72" y="158" fill="#fff" fill-opacity=".75" font-family="{SANS}" font-size="19">Tell me what you are working on and we can see if it is a good fit.</text>\n'
-        f"  </g>\n"
-    )
-    bx, by, bw, bh = W - 72 - 190, 104, 190, 54
-    body += (
-        f'  <g opacity="1">{enter(0.3)}\n'
-        f'    <rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="27" fill="{NEON}" filter="url(#glow)" opacity=".8">'
-        f'<animate attributeName="opacity" values=".5;.95;.5" dur="3s" repeatCount="indefinite"/></rect>\n'
-        f'    <rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="27" fill="{NEON}"/>\n'
-        f'    <text x="{bx + 32}" y="{by + 33}" fill="#fff" font-family="{SANS}" font-size="17" font-weight="600">Get in touch</text>\n'
-        f'    {lucide("arrow", bx + bw - 50, by + 18, 18, "#fff")}\n'
-        f"  </g>\n"
-    )
-    return svg(H, body, "Want to build something together? Get in touch", defs)
+def build_finale() -> str:
+    H = 420
+    svb, sinner = brand_vector("signature")
+    sw = 460
+    sh = sw * float(svb.split()[3]) / float(svb.split()[2])
+    sx, sy = (W - sw) / 2, 110
+    body = f"""    <g {anim("in", 0)}>
+      <ellipse cx="{W / 2:.0f}" cy="{H * .6:.0f}" rx="{W * .42:.0f}" ry="{H * .36:.0f}" fill="{COBALT}" opacity=".42" filter="url(#blur)"/>
+      <ellipse cx="{W / 2:.0f}" cy="{H + 40}" rx="{W * .6:.0f}" ry="{H * .32:.0f}" fill="{NEON}" opacity=".3" filter="url(#blur)"/>
+    </g>
+    <g {anim("rise", 0.3)}>
+      <svg x="{sx:.0f}" y="{sy + 6}" width="{sw}" height="{sh:.0f}" viewBox="{svb}" style="color:{MIDNIGHT}" filter="url(#glow)" opacity=".9">{sinner}</svg>
+      <svg x="{sx:.0f}" y="{sy}" width="{sw}" height="{sh:.0f}" viewBox="{svb}" style="color:{FG}">{sinner}</svg>
+    </g>
+    <g {anim("in", 1.0)}>
+      {text(W / 2, sy + sh + 70, esc(CLOSING_LINE), 30, FG, 500, anchor="middle", tracking="-0.8")}
+      {text(W / 2, sy + sh + 102, "Tech Lead · Software Engineer &amp; Architect · leonardolopes.tech", 15, MUTED, anchor="middle")}
+    </g>
+"""
+    return svg(H, body, f"Signature of Leonardo Lopes. {CLOSING_LINE}")
 
 
 def main() -> None:
     OUT.mkdir(exist_ok=True)
-    files = {
-        "hero": build_hero(),
-        "layers": build_layers(),
-        "about": build_about(),
-        "experience": build_experience(),
-        "stack": build_stack(),
-        "cta": build_cta(),
-        "explore-about": build_explore_card("About", "Who I am and how I work", 0.0),
-        "explore-experience": build_explore_card("Experience", "Roles and what shipped", 0.15),
-        "explore-technologies": build_explore_card("Technologies", "The stack I use daily", 0.3),
-        "explore-contact": build_explore_card("Contact", "Start a conversation", 0.45),
-    }
-    for name, content in files.items():
+    for name, fn in [
+        ("hero", build_hero),
+        ("ledger", build_ledger),
+        ("career", build_career),
+        ("stack", build_stack),
+        ("contact", build_contact),
+        ("finale", build_finale),
+    ]:
+        content = fn()
         (OUT / f"{name}.svg").write_text(content, encoding="utf-8")
         print(f"wrote assets/{name}.svg ({len(content) // 1024} KB)")
 
