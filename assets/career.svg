@@ -45,12 +45,12 @@
     <rect x="64" y="150" width="1072" height="426" rx="22" fill="#030407" fill-opacity=".72" stroke="#7aa6ff" stroke-opacity=".15"/>
     <g class="in" style="animation-delay:0.10s">
       <text x="104.0" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="start" style="font-feature-settings:'tnum','zero'">2020</text>
-      <text x="194.1" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2021</text>
-      <text x="347.7" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2022</text>
-      <text x="501.3" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2023</text>
-      <text x="654.9" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2024</text>
-      <text x="809.0" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2025</text>
-      <text x="962.6" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2026</text>
+      <text x="194.0" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2021</text>
+      <text x="347.5" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2022</text>
+      <text x="501.0" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2023</text>
+      <text x="654.5" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2024</text>
+      <text x="808.4" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2025</text>
+      <text x="961.9" y="200.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="middle" style="font-feature-settings:'tnum','zero'">2026</text>
       <path d="M104.0 214 v-6M116.9 214 v-6M129.8 214 v-6M142.6 214 v-6M155.5 214 v-6M168.4 214 v-6M181.3 214 v-6M194.2 214 v-6M207.1 214 v-6M219.9 214 v-6M232.8 214 v-6M245.7 214 v-6M258.6 214 v-6M271.5 214 v-6M284.4 214 v-6M297.2 214 v-6M310.1 214 v-6M323.0 214 v-6M335.9 214 v-6M348.8 214 v-6M361.7 214 v-6M374.5 214 v-6M387.4 214 v-6M400.3 214 v-6M413.2 214 v-6M426.1 214 v-6M439.0 214 v-6M451.8 214 v-6M464.7 214 v-6M477.6 214 v-6M490.5 214 v-6M503.4 214 v-6M516.3 214 v-6M529.1 214 v-6M542.0 214 v-6M554.9 214 v-6M567.8 214 v-6M580.7 214 v-6M593.6 214 v-6M606.4 214 v-6M619.3 214 v-6M632.2 214 v-6M645.1 214 v-6M658.0 214 v-6M670.9 214 v-6M683.7 214 v-6M696.6 214 v-6M709.5 214 v-6M722.4 214 v-6M735.3 214 v-6M748.2 214 v-6M761.0 214 v-6M773.9 214 v-6M786.8 214 v-6M799.7 214 v-6M812.6 214 v-6M825.5 214 v-6M838.3 214 v-6M851.2 214 v-6M864.1 214 v-6M877.0 214 v-6M889.9 214 v-6M902.8 214 v-6M915.6 214 v-6M928.5 214 v-6M941.4 214 v-6M954.3 214 v-6M967.2 214 v-6M980.1 214 v-6M992.9 214 v-6M1005.8 214 v-6M1018.7 214 v-6M1031.6 214 v-6M1044.5 214 v-6M1057.4 214 v-6M1070.2 214 v-6M1083.1 214 v-6M1096.0 214 v-6" stroke="#fff" stroke-opacity=".18"/>
       <path d="M64 214.5 H1136" stroke="#fff" stroke-opacity=".12"/>
     </g>
@@ -59,13 +59,13 @@
       <text x="1096.0" y="258.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="end" style="font-feature-settings:'tnum','zero'">May 2022 – Present</text>
       <rect x="104" y="274" width="992" height="8" rx="4" fill="#fff" fill-opacity=".05"/>
     </g>
-    <g class="draw" style="animation-delay:0.50s"><rect x="398.2" y="274" width="697.8" height="8" rx="4" fill="#2f6bff" filter="url(#glow)" opacity=".8"/><rect x="398.2" y="274" width="697.8" height="8" rx="4" fill="url(#filament)"/></g>
+    <g class="draw" style="animation-delay:0.50s"><rect x="397.9" y="274" width="698.1" height="8" rx="4" fill="#2f6bff" filter="url(#glow)" opacity=".8"/><rect x="397.9" y="274" width="698.1" height="8" rx="4" fill="url(#filament)"/></g>
     <g class="in" style="animation-delay:0.70s">
-      <path d="M398.2 294 v18" stroke="#fff" stroke-opacity=".12"/><text x="406.2" y="308.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">MSD</text>
-      <path d="M551.8 318 v18" stroke="#fff" stroke-opacity=".12"/><text x="559.8" y="332.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Grupo Petrópolis</text>
-      <path d="M783.3 294 v18" stroke="#fff" stroke-opacity=".12"/><text x="791.3" y="308.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Lactalis Group</text>
-      <path d="M898.2 318 v18" stroke="#fff" stroke-opacity=".12"/><text x="906.2" y="332.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Linda Lifetech</text>
-      <path d="M1051.8 294 v18" stroke="#fff" stroke-opacity=".12"/><text x="1043.8" y="308.0" fill="#7aa6ff" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="end">Callink</text>
+      <path d="M397.9 294 v18" stroke="#fff" stroke-opacity=".12"/><text x="405.9" y="308.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">MSD</text>
+      <path d="M551.4 318 v18" stroke="#fff" stroke-opacity=".12"/><text x="559.4" y="332.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Grupo Petrópolis</text>
+      <path d="M782.7 294 v18" stroke="#fff" stroke-opacity=".12"/><text x="790.7" y="308.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Lactalis Group</text>
+      <path d="M897.5 318 v18" stroke="#fff" stroke-opacity=".12"/><text x="905.5" y="332.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Linda Lifetech</text>
+      <path d="M1051.0 294 v18" stroke="#fff" stroke-opacity=".12"/><text x="1043.0" y="308.0" fill="#7aa6ff" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="end">Callink</text>
     </g>
     <path d="M104 346 H1096" stroke="#fff" stroke-opacity=".07"/>
     <g class="in" style="animation-delay:0.55s">
@@ -73,9 +73,9 @@
       <text x="1096.0" y="378.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="end" style="font-feature-settings:'tnum','zero'">Aug 2021 – Apr 2022</text>
       <rect x="104" y="394" width="992" height="8" rx="4" fill="#fff" fill-opacity=".05"/>
     </g>
-    <g class="draw" style="animation-delay:0.75s"><rect x="283.3" y="394" width="114.5" height="8" rx="4" fill="#e8eef9" fill-opacity=".45"/></g>
+    <g class="draw" style="animation-delay:0.75s"><rect x="283.1" y="394" width="114.4" height="8" rx="4" fill="#e8eef9" fill-opacity=".45"/></g>
     <g class="in" style="animation-delay:0.95s">
-      <path d="M283.3 414 v18" stroke="#fff" stroke-opacity=".12"/><text x="291.3" y="428.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Poliedro Educação</text>
+      <path d="M283.1 414 v18" stroke="#fff" stroke-opacity=".12"/><text x="291.1" y="428.0" fill="#8c98b0" font-family="Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="400" text-anchor="start">Poliedro Educação</text>
     </g>
     <path d="M104 466 H1096" stroke="#fff" stroke-opacity=".07"/>
     <g class="in" style="animation-delay:0.80s">
@@ -83,7 +83,7 @@
       <text x="1096.0" y="498.0" fill="#8c98b0" font-family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="400" text-anchor="end" style="font-feature-settings:'tnum','zero'">Jun 2020 – Jul 2021</text>
       <rect x="104" y="514" width="992" height="8" rx="4" fill="#fff" fill-opacity=".05"/>
     </g>
-    <g class="draw" style="animation-delay:1.00s"><rect x="104.0" y="514" width="178.9" height="8" rx="4" fill="#e8eef9" fill-opacity=".45"/></g>
+    <g class="draw" style="animation-delay:1.00s"><rect x="104.0" y="514" width="178.7" height="8" rx="4" fill="#e8eef9" fill-opacity=".45"/></g>
 
   </g>
   <rect x=".5" y=".5" width="1199" height="623" rx="23.5" stroke="#fff" stroke-opacity=".08"/>
